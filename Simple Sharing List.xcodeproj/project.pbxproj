@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		612F6BC72CD94314B9F0218D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A97389EC697842A29A83D327 /* libPods.a */; };
 		ACDAA4EE198AF0A000AAB5E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACDAA4ED198AF0A000AAB5E0 /* Foundation.framework */; };
 		ACDAA4F0198AF0A000AAB5E0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACDAA4EF198AF0A000AAB5E0 /* CoreGraphics.framework */; };
 		ACDAA4F2198AF0A000AAB5E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACDAA4F1198AF0A000AAB5E0 /* UIKit.framework */; };
@@ -19,6 +20,12 @@
 		ACDAA509198AF0A000AAB5E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACDAA4F1198AF0A000AAB5E0 /* UIKit.framework */; };
 		ACDAA511198AF0A000AAB5E0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACDAA50F198AF0A000AAB5E0 /* InfoPlist.strings */; };
 		ACDAA513198AF0A000AAB5E0 /* Simple_Sharing_ListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDAA512198AF0A000AAB5E0 /* Simple_Sharing_ListTests.m */; };
+		ACDAA51D198C098100AAB5E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACDAA51C198C098100AAB5E0 /* Main.storyboard */; };
+		ACDAA520198C0A1B00AAB5E0 /* AALoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDAA51F198C0A1B00AAB5E0 /* AALoginViewController.m */; };
+		ACDAA523198C0EFC00AAB5E0 /* AAHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDAA522198C0EFC00AAB5E0 /* AAHomeViewController.m */; };
+		ACDAA528198C345700AAB5E0 /* AAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDAA527198C345700AAB5E0 /* AAListViewController.m */; };
+		ACDAA530198C484600AAB5E0 /* AAConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDAA52F198C484600AAB5E0 /* AAConstants.m */; };
+		ACDAA533198C4BC900AAB5E0 /* AAOldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDAA532198C4BC900AAB5E0 /* AAOldViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B4DAC222F514F1ABE2695A7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		A97389EC697842A29A83D327 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACDAA4EA198AF0A000AAB5E0 /* Simple Sharing List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Sharing List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACDAA4ED198AF0A000AAB5E0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ACDAA4EF198AF0A000AAB5E0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,6 +57,17 @@
 		ACDAA50E198AF0A000AAB5E0 /* Simple Sharing ListTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Simple Sharing ListTests-Info.plist"; sourceTree = "<group>"; };
 		ACDAA510198AF0A000AAB5E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ACDAA512198AF0A000AAB5E0 /* Simple_Sharing_ListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Simple_Sharing_ListTests.m; sourceTree = "<group>"; };
+		ACDAA51C198C098100AAB5E0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		ACDAA51E198C0A1B00AAB5E0 /* AALoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AALoginViewController.h; sourceTree = "<group>"; };
+		ACDAA51F198C0A1B00AAB5E0 /* AALoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AALoginViewController.m; sourceTree = "<group>"; };
+		ACDAA521198C0EFC00AAB5E0 /* AAHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAHomeViewController.h; sourceTree = "<group>"; };
+		ACDAA522198C0EFC00AAB5E0 /* AAHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAHomeViewController.m; sourceTree = "<group>"; };
+		ACDAA526198C345700AAB5E0 /* AAListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAListViewController.h; sourceTree = "<group>"; };
+		ACDAA527198C345700AAB5E0 /* AAListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAListViewController.m; sourceTree = "<group>"; };
+		ACDAA52E198C484600AAB5E0 /* AAConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAConstants.h; sourceTree = "<group>"; };
+		ACDAA52F198C484600AAB5E0 /* AAConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAConstants.m; sourceTree = "<group>"; };
+		ACDAA531198C4BC900AAB5E0 /* AAOldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAOldViewController.h; sourceTree = "<group>"; };
+		ACDAA532198C4BC900AAB5E0 /* AAOldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOldViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +78,7 @@
 				ACDAA4F0198AF0A000AAB5E0 /* CoreGraphics.framework in Frameworks */,
 				ACDAA4F2198AF0A000AAB5E0 /* UIKit.framework in Frameworks */,
 				ACDAA4EE198AF0A000AAB5E0 /* Foundation.framework in Frameworks */,
+				612F6BC72CD94314B9F0218D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +102,7 @@
 				ACDAA50C198AF0A000AAB5E0 /* Simple Sharing ListTests */,
 				ACDAA4EC198AF0A000AAB5E0 /* Frameworks */,
 				ACDAA4EB198AF0A000AAB5E0 /* Products */,
+				3B4DAC222F514F1ABE2695A7 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +122,7 @@
 				ACDAA4EF198AF0A000AAB5E0 /* CoreGraphics.framework */,
 				ACDAA4F1198AF0A000AAB5E0 /* UIKit.framework */,
 				ACDAA506198AF0A000AAB5E0 /* XCTest.framework */,
+				A97389EC697842A29A83D327 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -109,6 +132,11 @@
 			children = (
 				ACDAA4FC198AF0A000AAB5E0 /* AAAppDelegate.h */,
 				ACDAA4FD198AF0A000AAB5E0 /* AAAppDelegate.m */,
+				ACDAA51C198C098100AAB5E0 /* Main.storyboard */,
+				ACDAA525198C0F0900AAB5E0 /* Login */,
+				ACDAA524198C0F0400AAB5E0 /* Home */,
+				ACDAA529198C345E00AAB5E0 /* New List */,
+				ACDAA534198C4BD500AAB5E0 /* Old List */,
 				ACDAA4FF198AF0A000AAB5E0 /* Images.xcassets */,
 				ACDAA4F4198AF0A000AAB5E0 /* Supporting Files */,
 			);
@@ -118,6 +146,8 @@
 		ACDAA4F4198AF0A000AAB5E0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ACDAA52E198C484600AAB5E0 /* AAConstants.h */,
+				ACDAA52F198C484600AAB5E0 /* AAConstants.m */,
 				ACDAA4F5198AF0A000AAB5E0 /* Simple Sharing List-Info.plist */,
 				ACDAA4F6198AF0A000AAB5E0 /* InfoPlist.strings */,
 				ACDAA4F9198AF0A000AAB5E0 /* main.m */,
@@ -144,6 +174,42 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		ACDAA524198C0F0400AAB5E0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				ACDAA521198C0EFC00AAB5E0 /* AAHomeViewController.h */,
+				ACDAA522198C0EFC00AAB5E0 /* AAHomeViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		ACDAA525198C0F0900AAB5E0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				ACDAA51E198C0A1B00AAB5E0 /* AALoginViewController.h */,
+				ACDAA51F198C0A1B00AAB5E0 /* AALoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		ACDAA529198C345E00AAB5E0 /* New List */ = {
+			isa = PBXGroup;
+			children = (
+				ACDAA526198C345700AAB5E0 /* AAListViewController.h */,
+				ACDAA527198C345700AAB5E0 /* AAListViewController.m */,
+			);
+			name = "New List";
+			sourceTree = "<group>";
+		};
+		ACDAA534198C4BD500AAB5E0 /* Old List */ = {
+			isa = PBXGroup;
+			children = (
+				ACDAA531198C4BC900AAB5E0 /* AAOldViewController.h */,
+				ACDAA532198C4BC900AAB5E0 /* AAOldViewController.m */,
+			);
+			name = "Old List";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -151,9 +217,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ACDAA516198AF0A000AAB5E0 /* Build configuration list for PBXNativeTarget "Simple Sharing List" */;
 			buildPhases = (
+				24B29518C52B409AA9D3BE08 /* Check Pods Manifest.lock */,
 				ACDAA4E6198AF0A000AAB5E0 /* Sources */,
 				ACDAA4E7198AF0A000AAB5E0 /* Frameworks */,
 				ACDAA4E8198AF0A000AAB5E0 /* Resources */,
+				7192FC819D394882AF57C2BF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -222,6 +290,7 @@
 			files = (
 				ACDAA4F8198AF0A000AAB5E0 /* InfoPlist.strings in Resources */,
 				ACDAA500198AF0A000AAB5E0 /* Images.xcassets in Resources */,
+				ACDAA51D198C098100AAB5E0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,13 +304,51 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		24B29518C52B409AA9D3BE08 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7192FC819D394882AF57C2BF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		ACDAA4E6198AF0A000AAB5E0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACDAA533198C4BC900AAB5E0 /* AAOldViewController.m in Sources */,
+				ACDAA528198C345700AAB5E0 /* AAListViewController.m in Sources */,
+				ACDAA520198C0A1B00AAB5E0 /* AALoginViewController.m in Sources */,
+				ACDAA530198C484600AAB5E0 /* AAConstants.m in Sources */,
 				ACDAA4FE198AF0A000AAB5E0 /* AAAppDelegate.m in Sources */,
 				ACDAA4FA198AF0A000AAB5E0 /* main.m in Sources */,
+				ACDAA523198C0EFC00AAB5E0 /* AAHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +464,7 @@
 		};
 		ACDAA517198AF0A000AAB5E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B4DAC222F514F1ABE2695A7 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -370,6 +478,7 @@
 		};
 		ACDAA518198AF0A000AAB5E0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B4DAC222F514F1ABE2695A7 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -440,6 +549,7 @@
 				ACDAA518198AF0A000AAB5E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ACDAA519198AF0A000AAB5E0 /* Build configuration list for PBXNativeTarget "Simple Sharing ListTests" */ = {
 			isa = XCConfigurationList;
@@ -448,6 +558,7 @@
 				ACDAA51B198AF0A000AAB5E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

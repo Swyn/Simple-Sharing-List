@@ -12,11 +12,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    
+    [Parse setApplicationId:@"C0gpDdmNPFNz9pv3aD6mbkOFjHsUOEexM6B8FN9N"
+                  clientKey:@"9F3hmxo2zofbEqqGsqHr2CofWx4snebYC1iqeydD"];
+    
+    [PFFacebookUtils initializeFacebook];
     return YES;
+}
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
