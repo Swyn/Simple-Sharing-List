@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CEE12303-2592-4285-8ED8-8980F0D81A87</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Simple Sharing List</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>34CB24F4-5653-4C54-B94D-2476A64C521C</key>
+		<string>https://github.com/Swyn/oldSimpleList.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Simple Sharing List.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>34CB24F4-5653-4C54-B94D-2476A64C521C</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Swyn/oldSimpleList.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>34CB24F4-5653-4C54-B94D-2476A64C521C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>34CB24F4-5653-4C54-B94D-2476A64C521C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Simple Sharing List</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -7,10 +7,15 @@
 //
 
 #import "AALoginViewController.h"
+#import "AAUtility.h"
+#import "Reachability.h"
 
-@interface AALoginViewController ()
+@interface AALoginViewController (){
+    NSMutableData *_data;
+}
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 
 @end
 
@@ -47,41 +52,54 @@
     }
 }
 
-#pragma mark - Helper Method
+#pragma mark - Facebook Connection
 
 -(void)updateInfos
 {
-    FBRequest *request = [FBRequest requestForMe];
-    
-    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-        
+    [FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         if (!error) {
-            NSMutableDictionary *userProfile = [[NSMutableDictionary alloc] initWithCapacity:1];
-            [[PFUser currentUser] setObject:userProfile forKey:KAAUserUserKey];
-            [[PFUser currentUser] saveInBackground];
+            [self facebookRequestDidLoad:result];
+            NSURL *profilePictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [[PFUser currentUser] objectForKey:AAUserFacebookIDKey]]];
+            NSURLRequest *profilePictureURLRequest = [NSURLRequest requestWithURL:profilePictureURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0f];
+            [NSURLConnection connectionWithRequest:profilePictureURLRequest delegate:self];
         } else
         {
-            NSLog(@"Error in FB Request");
+            [self facebookRequestDidFailWithError:error];
         }
     }];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - NSURL Connection Data Delegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+    _data = [[NSMutableData alloc] init];
 }
-*/
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [_data appendData:data];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    [AAUtility processFacebookProfilePictureData:_data];
+}
+
+
+#pragma mark - AppDelegate
+
+-(BOOL)isParseReachable{
+    return self.networkStatus != NotReachable;
+}
+
+
 - (IBAction)loginButtonPressed:(UIButton *)sender {
     
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
     
-    NSArray *permissionsArray = @[@"user_about_me", @"user_location", @"user_birthday, user_friends"];
+    
+    NSArray *permissionsArray = @[@"user_about_me", @"public_profile", @"user_friends"];
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
         [self.activityIndicator stopAnimating];
         self.activityIndicator.hidden = YES;
@@ -96,10 +114,119 @@
             }
         }
         else{
+            [self updateInfos];
             [self performSegueWithIdentifier:@"loginToHomeSegue" sender:self];
         }
     }];
     
 }
+
+-(void)facebookRequestDidLoad:(id)result{
+    PFUser *user = [PFUser currentUser];
+    
+    NSArray *data = [result objectForKey:@"data"];
+    
+    if(data){
+        NSMutableArray *facebookIds = [[NSMutableArray alloc] initWithCapacity:[data count]];
+        for (NSDictionary *friendData in data ) {
+            if (friendData[@"id"]){
+                [facebookIds addObject:friendData[@"id"]];
+                NSLog(@"facebookIds : %@", facebookIds);
+            }
+        }
+        
+        [[AACache sharedChache] setFacebookFriends:facebookIds];
+        
+        if (user) {
+            if ([user objectForKey:AAUserFacebookFriendsKey]) {
+                [user removeObjectForKey:AAUserFacebookFriendsKey];
+            }
+            NSError *error = nil;
+            
+            PFQuery *facebookFriendsQuery = [PFUser query];
+            [facebookFriendsQuery whereKey:AAUserFacebookIDKey containedIn:facebookIds];
+            NSLog(@"liste facebookID : %@", facebookIds);
+            
+            NSMutableArray *simpleSharingListFriends = [[NSMutableArray alloc] init];
+            
+            [facebookFriendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (!error) {
+                    NSLog(@"comptage : %lu", [objects count]);
+                    [simpleSharingListFriends removeAllObjects];
+                    [simpleSharingListFriends addObjectsFromArray:objects];
+                    NSLog(@"liste amis tableau : %@", simpleSharingListFriends);
+                }
+            }];
+            
+            if (!error) {
+                [simpleSharingListFriends enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
+                    PFObject *joinActivity = [PFObject objectWithClassName:AAActivityClassKey];
+                    [joinActivity setObject:user forKey:AAActivityFromUserKey];
+                    [joinActivity setObject:newFriend forKey:AAActivityToUserKey];
+                    [joinActivity setObject:AAActivityTypeJoined forKey:AAActivityTypeKey];
+                    
+                    PFACL *joinACL = [PFACL ACL];
+                    [joinACL setPublicReadAccess:YES];
+                    joinActivity.ACL = joinACL;
+                    
+                    [joinActivity saveInBackground];
+                    
+                    NSLog(@"liste amis %@", simpleSharingListFriends);
+                    
+                }];
+            }
+            [user saveEventually];
+            
+        }
+    }
+    else {
+        if (user) {
+            NSString *facebookName = result[@"name"];
+            if (facebookName && [facebookName length] != 0) {
+                [user setObject:facebookName forKey:AAUserNameKey];
+                NSLog(@"facebook Name : %@", facebookName);
+                
+            }else {
+                [user setObject:@"Someone" forKey:AAUserNameKey];
+            }
+            NSString *facebookId = result[@"id"];
+            if (facebookId && [facebookId length] != 0) {
+                [user setObject:facebookId forKey:AAUserFacebookIDKey];
+                NSLog(@"facebook Id : %@", facebookId);
+            }
+            [user saveEventually];
+        }
+        
+        [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            if (!error) {
+                [self facebookRequestDidLoad:result];
+            } else {
+                [self facebookRequestDidFailWithError:error];
+            }
+        }];
+    }
+    
+}
+
+-(void)facebookRequestDidFailWithError:(NSError *)error {
+    NSLog(@"Facebook error: %@", error);
+    
+    if([PFUser currentUser]){
+        if ([PFUser currentUser]) {
+            NSLog(@"The Facebook token was invalidated. Logging out?");
+            
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 @end

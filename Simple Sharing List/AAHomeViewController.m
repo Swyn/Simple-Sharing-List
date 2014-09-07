@@ -25,8 +25,8 @@
 {
     self = [super initWithCoder:aCoder];
     if (self) {
-        self.parseClassName = @"AllLists";
-        self.textKey = @"listName";
+        self.parseClassName = AAListClassKey;
+        self.textKey = AAListTitleKey;
         self.pullToRefreshEnabled = YES;
         self.paginationEnabled = NO;
     }
@@ -55,7 +55,7 @@
 
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable:) name:@"refreshTable" object:nil];
+ //   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable:) name:@"refreshTable" object:nil];
     // Do any additional setup after loading the view.
     
     
@@ -116,17 +116,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.textLabel.text = [object objectForKey:@"listName"];
+    cell.textLabel.text = [object objectForKey:self.textKey];
     
     return cell;
 }
 
 
-#pragma Button Item
-
-- (IBAction)addBarButtonItemPressed:(UIBarButtonItem *)sender {
-    [self performSegueWithIdentifier:@"homeToListSegue" sender:nil];
-}
 
 
 

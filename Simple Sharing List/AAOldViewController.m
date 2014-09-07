@@ -50,10 +50,10 @@
 
 - (IBAction)saveBarButtonPressed:(UIBarButtonItem *)sender{
     
-    PFQuery *query = [PFQuery queryWithClassName:@"AllLists"];
+    PFQuery *query = [PFQuery queryWithClassName:AAListClassKey];
     [query getObjectInBackgroundWithId:self.oldList.objectId block:^(PFObject *object, NSError *error) {
-        object[kAATextViewTitleKey] = self.titleLabel.text;
-        object[kAAUserTextViewClassKey] = self.textView.text;
+        object[AAListTitleKey] = self.titleLabel.text;
+        object[AAListTextKey] = self.textView.text;
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshTable" object:self];
             [self.navigationController popViewControllerAnimated:YES];
@@ -66,8 +66,8 @@
 
 -(void)updateLabels
 {
-    self.titleLabel.text = [self.oldList objectForKey:kAATextViewTitleKey];
-    self.textView.text = [self.oldList objectForKey:kAAUserTextViewClassKey];
+    self.titleLabel.text = [self.oldList objectForKey:AAListTitleKey];
+    self.textView.text = [self.oldList objectForKey:AAListTextKey];
 }
 
 /*

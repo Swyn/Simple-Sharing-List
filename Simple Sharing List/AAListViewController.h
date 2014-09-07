@@ -13,7 +13,7 @@
 
 @protocol AAListViewControllerDelegate <NSObject>
 
--(void)didDismissAAListViewController:(AAListViewController *)vc;
+//-(void)didDismissAAListViewController:(AAListViewController *)vc;
 
 @end
 

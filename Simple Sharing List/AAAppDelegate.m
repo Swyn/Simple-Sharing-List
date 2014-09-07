@@ -13,18 +13,39 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    // Override point for customization after application launch.
+    // **************************************************************************************************************************************************************************************
+    // Welcome to Simple Sharing List!
+    // An easy way to create list, reminders and share them with you co-workers & friends
+    // Have a nice time reviewing this code and if you have an observation or want any kind of informations do not hesitate to contact me @ :
+    // alexandre.arrighi@gmail.com
+    // 06.99.17.59.09
+    //***************************************************************************************************************************************************************************************
+    
+    
+    // Parse & Facebook Initialization
     
     [Parse setApplicationId:@"C0gpDdmNPFNz9pv3aD6mbkOFjHsUOEexM6B8FN9N"
                   clientKey:@"9F3hmxo2zofbEqqGsqHr2CofWx4snebYC1iqeydD"];
     
     [PFFacebookUtils initializeFacebook];
+    
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    if(application.applicationIconBadgeNumber !=0) {
+        application.applicationIconBadgeNumber = 0;
+        [[PFInstallation currentInstallation] saveInBackground];
+    }
+    
+    PFACL *defaultACl = [PFACL ACL];
+    [defaultACl setPublicReadAccess:YES];
+    [PFACL setDefaultACL:defaultACl withAccessForCurrentUser:YES];
+    
     return YES;
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

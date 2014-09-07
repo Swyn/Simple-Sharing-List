@@ -1,13 +1,21 @@
-//
-//  UIImage+ResizeAdditions.h
-//  Simple Sharing List
-//
-//  Created by Alexandre ARRIGHI on 22/08/2014.
-//  Copyright (c) 2014 Alexandre ARRIGHI. All rights reserved.
-//
+// UIImage+ResizeAdditions.h
+// Created by Trevor Harmon on 8/5/09.
+// Free for personal or commercial use, with or without modification.
+// No warranty is expressed or implied.
 
-#import <UIKit/UIKit.h>
+// Extends the UIImage class to support resizing/cropping
 
-@interface UIImage_ResizeAdditions : UIImage
+// http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/
 
+@interface UIImage (Resize)
+- (UIImage *)croppedImage:(CGRect)bounds;
+- (UIImage *)thumbnailImage:(NSInteger)thumbnailSize
+          transparentBorder:(NSUInteger)borderSize
+               cornerRadius:(NSUInteger)cornerRadius
+       interpolationQuality:(CGInterpolationQuality)quality;
+- (UIImage *)resizedImage:(CGSize)newSize
+     interpolationQuality:(CGInterpolationQuality)quality;
+- (UIImage *)resizedImageWithContentMode:(UIViewContentMode)contentMode
+                                  bounds:(CGSize)bounds
+                    interpolationQuality:(CGInterpolationQuality)quality;
 @end

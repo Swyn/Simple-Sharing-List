@@ -10,4 +10,8 @@
 
 @interface AAUtility : NSObject
 
++(void)processFacebookProfilePictureData:(NSData *)data;
+
+
+
 @end

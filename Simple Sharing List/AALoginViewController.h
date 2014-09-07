@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AALoginViewController : UIViewController
+@interface AALoginViewController : UIViewController<NSURLConnectionDataDelegate>
+
+@property (nonatomic, readonly) int networkStatus;
+
+-(BOOL)isParseReachable;
+
+-(void)facebookRequestDidLoad:(id)result;
+-(void)facebookRequestDidFailWithError:(NSError *)error;
+
 
 @end

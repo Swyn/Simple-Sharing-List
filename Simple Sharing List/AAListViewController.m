@@ -76,17 +76,12 @@
     
     
     
-    self.theNewList = [PFObject objectWithClassName:@"AllLists"];
+    self.theNewList = [PFObject objectWithClassName:AAListClassKey];
     
-    [self.theNewList setObject:self.textView.text forKey:kAAUserTextViewClassKey];
-    [self.theNewList setObject:self.titleLabel.text forKey:kAATextViewTitleKey];
-    [self.theNewList setObject:self.userFBID forKey:kAAUserListShareSelfIdKey];
-    [self.theNewList setObject:[PFUser currentUser] forKey:KAAUserUserKey];
+    [self.theNewList setObject:self.textView.text forKey:AAListTextKey];
+    [self.theNewList setObject:self.titleLabel.text forKey:AAListTitleKey];
+    [self.theNewList setObject:[PFUser currentUser] forKey:AAListUserKey];
     
-    for (int x=0; x < [self.myList count]; x++) {
-        
-        [self.theNewList setObject:self.myList[x] forKey:kAAUserListShareKey];
-    }
     
     [self.theNewList saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
@@ -100,33 +95,6 @@
 {
     [textField resignFirstResponder];
     return YES;
-}
-
-- (IBAction)shareWithButtonPressed:(UIButton *)sender {
-    self.friendPickerController = [[FBFriendPickerViewController alloc] init];
-    self.friendPickerController.title = @"Share With...";
-    [self.friendPickerController loadData];
-    [self.friendPickerController clearSelection];
-    [self.friendPickerController setDelegate:self];
-    
-    [self presentViewController:self.friendPickerController animated:YES completion:nil];
-}
-
--(void)facebookViewControllerDoneWasPressed:(id)sender {
-    
-    
-    for (id<FBGraphUser> user in self.friendPickerController.selection) {
-        NSLog(@"%@", user.objectID);
-        
-        
-        [self.myList addObject:[NSString stringWithFormat:@"%@", user.objectID]];
-    }
-    NSLog(@"%@", self.myList);
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)facebookViewControllerCancelWasPressed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

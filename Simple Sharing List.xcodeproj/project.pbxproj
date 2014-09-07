@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		612F6BC72CD94314B9F0218D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A97389EC697842A29A83D327 /* libPods.a */; };
+		AC82B13B19A6E10700A0AD19 /* AAUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AC82B13A19A6E10700A0AD19 /* AAUtility.m */; };
+		AC82B13E19A6E46600A0AD19 /* UIImage+ResizeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC82B13D19A6E46600A0AD19 /* UIImage+ResizeAdditions.m */; };
+		AC82B14319A6E49800A0AD19 /* UIImage+AlphaAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC82B14019A6E49800A0AD19 /* UIImage+AlphaAdditions.m */; };
+		AC82B14419A6E49800A0AD19 /* UIImage+RoundedCornerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC82B14219A6E49800A0AD19 /* UIImage+RoundedCornerAdditions.m */; };
+		AC82B14719A6F71E00A0AD19 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AC82B14619A6F71E00A0AD19 /* Reachability.m */; };
+		AC82B14C19A7C9FC00A0AD19 /* AACache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC82B14B19A7C9FC00A0AD19 /* AACache.m */; };
 		ACDAA4EE198AF0A000AAB5E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACDAA4ED198AF0A000AAB5E0 /* Foundation.framework */; };
 		ACDAA4F0198AF0A000AAB5E0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACDAA4EF198AF0A000AAB5E0 /* CoreGraphics.framework */; };
 		ACDAA4F2198AF0A000AAB5E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACDAA4F1198AF0A000AAB5E0 /* UIKit.framework */; };
@@ -41,6 +47,18 @@
 /* Begin PBXFileReference section */
 		3B4DAC222F514F1ABE2695A7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A97389EC697842A29A83D327 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC82B13919A6E10700A0AD19 /* AAUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAUtility.h; path = "Simple Sharing List/AAUtility.h"; sourceTree = "<group>"; };
+		AC82B13A19A6E10700A0AD19 /* AAUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAUtility.m; path = "Simple Sharing List/AAUtility.m"; sourceTree = "<group>"; };
+		AC82B13C19A6E46600A0AD19 /* UIImage+ResizeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ResizeAdditions.h"; sourceTree = "<group>"; };
+		AC82B13D19A6E46600A0AD19 /* UIImage+ResizeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ResizeAdditions.m"; sourceTree = "<group>"; };
+		AC82B13F19A6E49800A0AD19 /* UIImage+AlphaAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AlphaAdditions.h"; sourceTree = "<group>"; };
+		AC82B14019A6E49800A0AD19 /* UIImage+AlphaAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AlphaAdditions.m"; sourceTree = "<group>"; };
+		AC82B14119A6E49800A0AD19 /* UIImage+RoundedCornerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCornerAdditions.h"; sourceTree = "<group>"; };
+		AC82B14219A6E49800A0AD19 /* UIImage+RoundedCornerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCornerAdditions.m"; sourceTree = "<group>"; };
+		AC82B14519A6F71E00A0AD19 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "../../../../Downloads/ParsePlatform-Anypic-91cf860/Anypic-iOS/Vendor/Reachability/Reachability.h"; sourceTree = "<group>"; };
+		AC82B14619A6F71E00A0AD19 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "../../../../Downloads/ParsePlatform-Anypic-91cf860/Anypic-iOS/Vendor/Reachability/Reachability.m"; sourceTree = "<group>"; };
+		AC82B14A19A7C9FC00A0AD19 /* AACache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AACache.h; sourceTree = "<group>"; };
+		AC82B14B19A7C9FC00A0AD19 /* AACache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AACache.m; sourceTree = "<group>"; };
 		ACDAA4EA198AF0A000AAB5E0 /* Simple Sharing List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Sharing List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACDAA4ED198AF0A000AAB5E0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ACDAA4EF198AF0A000AAB5E0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -64,8 +82,8 @@
 		ACDAA522198C0EFC00AAB5E0 /* AAHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAHomeViewController.m; sourceTree = "<group>"; };
 		ACDAA526198C345700AAB5E0 /* AAListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAListViewController.h; sourceTree = "<group>"; };
 		ACDAA527198C345700AAB5E0 /* AAListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAListViewController.m; sourceTree = "<group>"; };
-		ACDAA52E198C484600AAB5E0 /* AAConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAConstants.h; sourceTree = "<group>"; };
-		ACDAA52F198C484600AAB5E0 /* AAConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAConstants.m; sourceTree = "<group>"; };
+		ACDAA52E198C484600AAB5E0 /* AAConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAConstants.h; path = "Simple Sharing List/AAConstants.h"; sourceTree = "<group>"; };
+		ACDAA52F198C484600AAB5E0 /* AAConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAConstants.m; path = "Simple Sharing List/AAConstants.m"; sourceTree = "<group>"; };
 		ACDAA531198C4BC900AAB5E0 /* AAOldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAOldViewController.h; sourceTree = "<group>"; };
 		ACDAA532198C4BC900AAB5E0 /* AAOldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOldViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +113,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC82B14819A7C98900A0AD19 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				AC82B13C19A6E46600A0AD19 /* UIImage+ResizeAdditions.h */,
+				AC82B13D19A6E46600A0AD19 /* UIImage+ResizeAdditions.m */,
+				AC82B13F19A6E49800A0AD19 /* UIImage+AlphaAdditions.h */,
+				AC82B14019A6E49800A0AD19 /* UIImage+AlphaAdditions.m */,
+				AC82B14119A6E49800A0AD19 /* UIImage+RoundedCornerAdditions.h */,
+				AC82B14219A6E49800A0AD19 /* UIImage+RoundedCornerAdditions.m */,
+			);
+			name = UIImage;
+			path = "Simple Sharing List";
+			sourceTree = "<group>";
+		};
+		AC82B14919A7C9B600A0AD19 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				AC82B14819A7C98900A0AD19 /* UIImage */,
+				ACDAA52E198C484600AAB5E0 /* AAConstants.h */,
+				ACDAA52F198C484600AAB5E0 /* AAConstants.m */,
+				AC82B14A19A7C9FC00A0AD19 /* AACache.h */,
+				AC82B14B19A7C9FC00A0AD19 /* AACache.m */,
+				AC82B13919A6E10700A0AD19 /* AAUtility.h */,
+				AC82B13A19A6E10700A0AD19 /* AAUtility.m */,
+				AC82B14519A6F71E00A0AD19 /* Reachability.h */,
+				AC82B14619A6F71E00A0AD19 /* Reachability.m */,
+			);
+			name = Utility;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		ACDAA4E1198AF0A000AAB5E0 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +186,7 @@
 				ACDAA524198C0F0400AAB5E0 /* Home */,
 				ACDAA529198C345E00AAB5E0 /* New List */,
 				ACDAA534198C4BD500AAB5E0 /* Old List */,
+				AC82B14919A7C9B600A0AD19 /* Utility */,
 				ACDAA4FF198AF0A000AAB5E0 /* Images.xcassets */,
 				ACDAA4F4198AF0A000AAB5E0 /* Supporting Files */,
 			);
@@ -146,8 +196,6 @@
 		ACDAA4F4198AF0A000AAB5E0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				ACDAA52E198C484600AAB5E0 /* AAConstants.h */,
-				ACDAA52F198C484600AAB5E0 /* AAConstants.m */,
 				ACDAA4F5198AF0A000AAB5E0 /* Simple Sharing List-Info.plist */,
 				ACDAA4F6198AF0A000AAB5E0 /* InfoPlist.strings */,
 				ACDAA4F9198AF0A000AAB5E0 /* main.m */,
@@ -345,9 +393,15 @@
 				ACDAA533198C4BC900AAB5E0 /* AAOldViewController.m in Sources */,
 				ACDAA528198C345700AAB5E0 /* AAListViewController.m in Sources */,
 				ACDAA520198C0A1B00AAB5E0 /* AALoginViewController.m in Sources */,
+				AC82B13E19A6E46600A0AD19 /* UIImage+ResizeAdditions.m in Sources */,
+				AC82B14419A6E49800A0AD19 /* UIImage+RoundedCornerAdditions.m in Sources */,
+				AC82B14319A6E49800A0AD19 /* UIImage+AlphaAdditions.m in Sources */,
 				ACDAA530198C484600AAB5E0 /* AAConstants.m in Sources */,
+				AC82B13B19A6E10700A0AD19 /* AAUtility.m in Sources */,
 				ACDAA4FE198AF0A000AAB5E0 /* AAAppDelegate.m in Sources */,
 				ACDAA4FA198AF0A000AAB5E0 /* main.m in Sources */,
+				AC82B14C19A7C9FC00A0AD19 /* AACache.m in Sources */,
+				AC82B14719A6F71E00A0AD19 /* Reachability.m in Sources */,
 				ACDAA523198C0EFC00AAB5E0 /* AAHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
