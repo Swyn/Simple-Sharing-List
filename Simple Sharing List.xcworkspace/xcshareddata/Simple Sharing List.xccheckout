@@ -12,20 +12,24 @@
 	<dict>
 		<key>34CB24F4-5653-4C54-B94D-2476A64C521C</key>
 		<string>https://github.com/Swyn/oldSimpleList.git</string>
+		<key>C9F78D661BBF8AF6CD42FF771D988D26E8020B99</key>
+		<string>https://github.com/Swyn/oldSimpleList.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Simple Sharing List.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>34CB24F4-5653-4C54-B94D-2476A64C521C</key>
+		<string>../../Simple Sharing List</string>
+		<key>C9F78D661BBF8AF6CD42FF771D988D26E8020B99</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/Swyn/oldSimpleList.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>34CB24F4-5653-4C54-B94D-2476A64C521C</string>
+	<string>C9F78D661BBF8AF6CD42FF771D988D26E8020B99</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>34CB24F4-5653-4C54-B94D-2476A64C521C</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Simple Sharing List</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C9F78D661BBF8AF6CD42FF771D988D26E8020B99</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Simple%20Sharing%20List</string>
 		</dict>
 	</array>
 </dict>

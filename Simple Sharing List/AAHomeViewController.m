@@ -55,7 +55,7 @@
 
     [super viewDidLoad];
     
- //   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable:) name:@"refreshTable" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable:) name:@"refreshTable" object:nil];
     // Do any additional setup after loading the view.
     
     
@@ -78,10 +78,19 @@
 
 -(PFQuery *)queryForTable
 {
-    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+        PFUser *currentUser = [PFUser currentUser];
     
-    return query;
+//    PFQuery *queryForSelf = [PFQuery queryWithClassName:self.parseClassName];
+//    [queryForSelf whereKey:@"user" equalTo:currentUser];
+    
+    PFQuery *queryForFriends = [PFQuery queryWithClassName:self.parseClassName];
+    [queryForFriends whereKey:@"friend" equalTo:[[currentUser] objectId]];
+    
+    
+    
+//    PFQuery *queryCombined = [PFQuery orQueryWithSubqueries:@[queryForSelf, queryForFriends]];
+    
+    return queryForFriends;
     
 }
 

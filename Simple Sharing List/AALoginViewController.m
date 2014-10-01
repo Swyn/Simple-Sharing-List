@@ -46,6 +46,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:YES];
     if([PFUser currentUser] && [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
     {
         [self performSegueWithIdentifier:@"loginToHomeSegue" sender:self];
@@ -98,7 +99,6 @@
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
     
-    
     NSArray *permissionsArray = @[@"user_about_me", @"public_profile", @"user_friends"];
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
         [self.activityIndicator stopAnimating];
@@ -147,34 +147,50 @@
             [facebookFriendsQuery whereKey:AAUserFacebookIDKey containedIn:facebookIds];
             NSLog(@"liste facebookID : %@", facebookIds);
             
-            NSMutableArray *simpleSharingListFriends = [[NSMutableArray alloc] init];
+            self.simpleSharingListFriends = [[NSMutableArray alloc] init];
             
             [facebookFriendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (!error) {
                     NSLog(@"comptage : %lu", [objects count]);
-                    [simpleSharingListFriends removeAllObjects];
-                    [simpleSharingListFriends addObjectsFromArray:objects];
-                    NSLog(@"liste amis tableau : %@", simpleSharingListFriends);
+                    [self.simpleSharingListFriends removeAllObjects];
+                    [self.simpleSharingListFriends addObjectsFromArray:objects];
+                    NSLog(@"liste amis tableau : %@", self.simpleSharingListFriends);
+                    
+                    [self.simpleSharingListFriends enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
+                        PFObject *joinActivity = [PFObject objectWithClassName:AAActivityClassKey];
+                        [joinActivity setObject:user forKey:AAActivityFromUserKey];
+                        [joinActivity setObject:newFriend forKey:AAActivityToUserKey];
+                        [joinActivity setObject:AAActivityTypeJoined forKey:AAActivityTypeKey];
+                        
+                        PFACL *joinACL = [PFACL ACL];
+                        [joinACL setPublicReadAccess:YES];
+                        joinActivity.ACL = joinACL;
+                        
+                        [joinActivity saveInBackground];
+                        
+                        NSLog(@"liste amis %@", self.simpleSharingListFriends);
+                        
+                    }];
                 }
             }];
             
-            if (!error) {
-                [simpleSharingListFriends enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
-                    PFObject *joinActivity = [PFObject objectWithClassName:AAActivityClassKey];
-                    [joinActivity setObject:user forKey:AAActivityFromUserKey];
-                    [joinActivity setObject:newFriend forKey:AAActivityToUserKey];
-                    [joinActivity setObject:AAActivityTypeJoined forKey:AAActivityTypeKey];
-                    
-                    PFACL *joinACL = [PFACL ACL];
-                    [joinACL setPublicReadAccess:YES];
-                    joinActivity.ACL = joinACL;
-                    
-                    [joinActivity saveInBackground];
-                    
-                    NSLog(@"liste amis %@", simpleSharingListFriends);
-                    
-                }];
-            }
+//            if (!error) {
+//                [simpleSharingListFriends enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
+//                    PFObject *joinActivity = [PFObject objectWithClassName:AAActivityClassKey];
+//                    [joinActivity setObject:user forKey:AAActivityFromUserKey];
+//                    [joinActivity setObject:newFriend forKey:AAActivityToUserKey];
+//                    [joinActivity setObject:AAActivityTypeJoined forKey:AAActivityTypeKey];
+//                    
+//                    PFACL *joinACL = [PFACL ACL];
+//                    [joinACL setPublicReadAccess:YES];
+//                    joinActivity.ACL = joinACL;
+//                    
+//                    [joinActivity saveInBackground];
+//                    
+//                    NSLog(@"liste amis %@", simpleSharingListFriends);
+//                    
+//                }];
+//            }
             [user saveEventually];
             
         }

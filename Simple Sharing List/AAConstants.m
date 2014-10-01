@@ -44,6 +44,7 @@ NSString *const AAUserNameKey            = @"name";
 NSString *const AAUserFacebookIDKey      = @"facebookId";
 NSString *const AAUserPhotoIDKey         = @"photoId";
 NSString *const AAUserProfilePictureKey  = @"profilePicture";
+NSString *const AAUSerProfilePicSmallKey = @"profilePictureSmall";
 NSString *const AAUserFacebookFriendsKey = @"facebookFriends";
 
 
@@ -55,6 +56,7 @@ NSString *const AAListClassKey = @"List";
 NSString *const AAListUserKey =  @"user";
 NSString *const AAListTitleKey =  @"title";
 NSString *const AAListTextKey =  @"text";
+NSString *const AAListFriendsKey = @"friends";
 
 #pragma mark - Cached List Attributes
 //keys

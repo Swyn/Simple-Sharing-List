@@ -147,6 +147,24 @@
     return friends;
 }
 
+-(void)setSharedStatus:(BOOL)sharing user:(PFUser *)user {
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForUser:user]];
+    [attributes setObject:[NSNumber numberWithBool:sharing] forKey:kAAUserAttributesListIsSharedWithCurrentUser];
+    [self setAttributes:attributes forUser:user];
+    
+}
+
+-(BOOL)sharedStatusForUser:(PFUser *)user {
+    NSDictionary *attributes = [self attributesForUser:user];
+    if (attributes) {
+        NSNumber *sharingStatus = [attributes objectForKeyedSubscript:kAAUserAttributesListIsSharedWithCurrentUser];
+        if (sharingStatus) {
+            return [sharingStatus boolValue];
+        }
+    }
+    
+    return NO;
+}
 
 #pragma mark - Helper
 

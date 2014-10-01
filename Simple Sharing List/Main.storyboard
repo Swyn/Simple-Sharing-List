@@ -77,7 +77,7 @@
                     <navigationItem key="navigationItem" id="lRy-zz-wfu">
                         <barButtonItem key="rightBarButtonItem" title="Add" id="nOQ-rF-UjZ">
                             <connections>
-                                <segue destination="0YN-2x-0Zw" kind="modal" identifier="homeToListSegue" id="kjh-rX-hYE"/>
+                                <segue destination="023-b2-UEe" kind="push" id="bSb-v1-Vr0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -104,72 +104,67 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-ly-H4b">
-                                <rect key="frame" x="0.0" y="100" width="320" height="435"/>
+                                <rect key="frame" x="0.0" y="100" width="320" height="468"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QV3-o5-2Cd">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="430"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="468" id="HOv-pH-eUY"/>
+                                        </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="QV3-o5-2Cd" secondAttribute="trailing" id="HG6-GK-cba"/>
-                                    <constraint firstItem="QV3-o5-2Cd" firstAttribute="centerX" secondItem="cfe-ly-H4b" secondAttribute="centerX" id="IXk-Di-zRt"/>
-                                    <constraint firstItem="QV3-o5-2Cd" firstAttribute="leading" secondItem="cfe-ly-H4b" secondAttribute="leading" id="fgr-if-7y1"/>
-                                    <constraint firstItem="QV3-o5-2Cd" firstAttribute="centerY" secondItem="cfe-ly-H4b" secondAttribute="centerY" constant="-2.5" id="kZ8-Y2-3BW"/>
-                                    <constraint firstAttribute="bottom" secondItem="QV3-o5-2Cd" secondAttribute="bottom" constant="5" id="oUa-aP-DIn"/>
-                                    <constraint firstItem="QV3-o5-2Cd" firstAttribute="top" secondItem="cfe-ly-H4b" secondAttribute="top" id="rnF-Zg-0FP"/>
+                                    <constraint firstAttribute="trailing" secondItem="QV3-o5-2Cd" secondAttribute="trailing" id="2rC-27-HX2"/>
+                                    <constraint firstItem="QV3-o5-2Cd" firstAttribute="top" secondItem="cfe-ly-H4b" secondAttribute="top" id="6kS-CK-Gtl"/>
+                                    <constraint firstItem="QV3-o5-2Cd" firstAttribute="centerY" secondItem="cfe-ly-H4b" secondAttribute="centerY" id="S5C-IK-QZ6"/>
+                                    <constraint firstAttribute="bottom" secondItem="QV3-o5-2Cd" secondAttribute="bottom" id="bQY-S8-C2f"/>
+                                    <constraint firstItem="QV3-o5-2Cd" firstAttribute="leading" secondItem="cfe-ly-H4b" secondAttribute="leading" id="hFJ-yd-5M2"/>
+                                    <constraint firstItem="QV3-o5-2Cd" firstAttribute="centerX" secondItem="cfe-ly-H4b" secondAttribute="centerX" id="oyM-ex-ltK"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cL8-04-4Ow">
-                                <rect key="frame" x="116" y="538" width="88" height="30"/>
-                                <state key="normal" title="Share With...">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="shareWithButtonPressed:" destination="023-b2-UEe" eventType="touchUpInside" id="5W6-to-Off"/>
-                                    <segue destination="XQp-N7-uLP" kind="push" identifier="listToFriendPickSegue" id="eul-se-XRc"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cfe-ly-H4b" firstAttribute="top" secondItem="4jp-hF-5Xt" secondAttribute="top" constant="100" id="Cns-J0-JmK"/>
-                            <constraint firstAttribute="bottom" secondItem="cfe-ly-H4b" secondAttribute="bottom" constant="33" id="DKj-j2-IPL"/>
-                            <constraint firstItem="cL8-04-4Ow" firstAttribute="top" secondItem="cfe-ly-H4b" secondAttribute="bottom" constant="3" id="Gji-KZ-itK"/>
                             <constraint firstItem="cfe-ly-H4b" firstAttribute="leading" secondItem="4jp-hF-5Xt" secondAttribute="leading" id="WlR-aX-aWc"/>
                             <constraint firstAttribute="trailing" secondItem="cfe-ly-H4b" secondAttribute="trailing" id="iSp-sL-v72"/>
                             <constraint firstItem="cfe-ly-H4b" firstAttribute="top" secondItem="kPN-xo-lKi" secondAttribute="bottom" constant="2" id="iSv-zB-Cfp"/>
                             <constraint firstItem="kPN-xo-lKi" firstAttribute="leading" secondItem="cfe-ly-H4b" secondAttribute="leading" id="jjL-eO-kGQ"/>
                             <constraint firstItem="kPN-xo-lKi" firstAttribute="trailing" secondItem="cfe-ly-H4b" secondAttribute="trailing" id="mab-dE-1qJ"/>
-                            <constraint firstItem="cfe-ly-H4b" firstAttribute="centerX" secondItem="cL8-04-4Ow" secondAttribute="centerX" id="xeW-Yw-hgc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4fs-zQ-6gZ">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="Mfe-SK-jtC">
+                        <barButtonItem key="leftBarButtonItem" title="Save" id="Mfe-SK-jtC">
                             <connections>
                                 <action selector="saveBarButtonPressed:" destination="023-b2-UEe" id="r8f-AS-BXH"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Share With..." id="XLt-HV-hKp">
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="023-b2-UEe" id="6Wg-y6-uYM"/>
+                                <segue destination="XQp-N7-uLP" kind="push" identifier="listToFriendPickSegue" id="LY8-pr-TUu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="saveBarButton" destination="Mfe-SK-jtC" id="YrU-Ac-k0p"/>
                         <outlet property="scrollView" destination="cfe-ly-H4b" id="YaE-ff-42s"/>
-                        <outlet property="shareButton" destination="cL8-04-4Ow" id="JRS-5k-rT5"/>
                         <outlet property="textView" destination="QV3-o5-2Cd" id="bDi-HP-173"/>
                         <outlet property="titleLabel" destination="kPN-xo-lKi" id="dUp-SM-F1C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIe-Hz-7gS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="853" y="459"/>
+            <point key="canvasLocation" x="432" y="392"/>
         </scene>
         <!--Friend Picker Table View Controller-->
         <scene sceneID="Xpq-Qo-rK4">
             <objects>
-                <tableViewController id="XQp-N7-uLP" customClass="AAFBFriendPickerTableViewController" sceneMemberID="viewController">
+                <tableViewController id="XQp-N7-uLP" customClass="AAFFriendPickerTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="AEI-Ns-xkk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -214,7 +209,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kM5-6P-e2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1299" y="459"/>
+            <point key="canvasLocation" x="853" y="392"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UGj-No-5a3">
@@ -233,24 +228,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HtO-VN-XIw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-539" y="-294"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="EdS-K9-Hg3">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0YN-2x-0Zw" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FcE-7q-qdT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="023-b2-UEe" kind="relationship" relationship="rootViewController" id="Jqw-nB-k5z"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NW6-4g-AKJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="432" y="459"/>
         </scene>
         <!--Old View Controller-->
         <scene sceneID="Kor-rm-0IA">

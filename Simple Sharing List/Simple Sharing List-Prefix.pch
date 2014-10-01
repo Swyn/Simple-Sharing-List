@@ -16,5 +16,6 @@
     #import <Parse/Parse.h>
     #import "AAConstants.h"
     #import "AACache.h"
+    #import <ParseFacebookUtils/PFFacebookUtils.h>
 
 #endif

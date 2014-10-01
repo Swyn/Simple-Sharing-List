@@ -17,5 +17,7 @@
 -(void)facebookRequestDidLoad:(id)result;
 -(void)facebookRequestDidFailWithError:(NSError *)error;
 
+@property (nonatomic, strong) NSMutableArray *simpleSharingListFriends;
+
 
 @end

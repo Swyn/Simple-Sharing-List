@@ -23,9 +23,9 @@
 
 -(NSDictionary *)attributesForUser:(PFUser *)user;
 -(NSNumber *)listCountForUser:(PFUser *)user;
-//-(BOOL)sharedStatusForUser:(PFUser *)user;
+-(BOOL)sharedStatusForUser:(PFUser *)user;
 -(void)setListCount:(NSNumber *)count user:(PFUser *)user;
-//-(void)setSharedStatus:(BOOL)shared user:(PFUser *)user;
+-(void)setSharedStatus:(BOOL)shared user:(PFUser *)user;
 
 -(void)setFacebookFriends:(NSArray *)friends;
 -(NSArray *)facebookFriends;

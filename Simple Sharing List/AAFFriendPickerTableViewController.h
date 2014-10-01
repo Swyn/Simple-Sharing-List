@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AAFBFriendPickerTableViewController : UITableViewController
+@protocol AAFFriendPickerTableViewControllerDelegate <NSObject>
+
+-(void)didPickFriends:(NSMutableArray*)friendsPicked;
+
+@end
+
+@interface AAFFriendPickerTableViewController : UITableViewController
+
+@property (weak) id <AAFFriendPickerTableViewControllerDelegate> delegate;
+
 
 @end

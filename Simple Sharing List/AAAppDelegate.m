@@ -40,6 +40,8 @@
     [defaultACl setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACl withAccessForCurrentUser:YES];
     
+    [FBFriendPickerViewController class];
+    
     return YES;
 }
 

@@ -6,15 +6,30 @@
 //  Copyright (c) 2014 Alexandre ARRIGHI. All rights reserved.
 //
 
-#import "AAFBFriendPickerTableViewController.h"
+#import "AAFFriendPickerTableViewController.h"
 
-@interface AAFBFriendPickerTableViewController ()
+@interface AAFFriendPickerTableViewController ()
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *shareButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
+
+
+@property (strong, nonatomic) NSMutableArray *friendsArray;
+@property (strong, nonatomic) NSMutableArray *selectedFriends;
+
 
 @end
 
-@implementation AAFBFriendPickerTableViewController
+@implementation AAFFriendPickerTableViewController
+
+-(NSMutableArray *)selectedFriends{
+    if (!_selectedFriends) {
+        _selectedFriends = [[NSMutableArray alloc] init];
+    }
+    return _selectedFriends;
+}
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -22,6 +37,10 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self AvailableFriends];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,27 +50,78 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    NSLog(@"nombre d'amis : %lu", [self.friendsArray count]);
+    return [self.friendsArray count];
+    
+    
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+-(void)AvailableFriends {
+    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+    [query whereKey:@"fromUser" equalTo:[PFUser currentUser]];
+    [query includeKey:@"toUser"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            [self.friendsArray removeAllObjects];
+            self.friendsArray = [objects mutableCopy];
+            NSLog(@"Amis présent dans friendArray : %@", self.friendsArray);
+            [self.tableView reloadData];
+        }
+        
+    }];
     
-    // Configure the cell...
+}
+
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    static NSString *CellIndetifier = @"friendCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIndetifier forIndexPath:indexPath];
+    
+    PFObject *friend = [self.friendsArray objectAtIndex:indexPath.row];
+    PFUser *friendInTable = [friend objectForKey:@"toUser"];
+    cell.textLabel.text = friendInTable[@"name"];
+    
+    if ([self.selectedFriends containsObject:[self.friendsArray objectAtIndex:indexPath.row]]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     return cell;
 }
-*/
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell.accessoryType == UITableViewCellAccessoryNone) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [self.selectedFriends addObject:[self.friendsArray objectAtIndex:indexPath.row]];
+        NSLog(@"%@", self.selectedFriends);
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        [self.selectedFriends removeObject:[self.friendsArray objectAtIndex:indexPath.row]];
+        NSLog(@"%@", self.selectedFriends);
+        
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Action Buttons
+
+- (IBAction)cancelButtonPressed:(UIBarButtonItem *)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+- (IBAction)shareButtonPressed:(UIBarButtonItem *)sender {
+    [self.delegate didPickFriends:self.selectedFriends];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -96,5 +166,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+
 
 @end

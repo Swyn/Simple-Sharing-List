@@ -10,17 +10,21 @@
 #import "AAHomeViewController.h"
 
 
-@interface AAListViewController ()
+
+
+@interface AAListViewController () <AAFFriendPickerTableViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
 
 @property (strong, nonatomic) NSMutableArray *myList;
+@property (strong, nonatomic) NSMutableArray *selectedFriends;
+
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UITextField *titleLabel;
-@property (strong, nonatomic) IBOutlet UIButton *shareButton;
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
+@property (strong, nonatomic) IBOutlet UIButton *shareButton;
+
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) PFObject *theNewList;
 
@@ -29,13 +33,6 @@
 
 @implementation AAListViewController
 
--(NSMutableArray *)myList
-{
-    if (!_myList) {
-        _myList = [[NSMutableArray alloc] init];
-    }
-    return _myList;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,24 +43,33 @@
     return self;
 }
 
+-(NSMutableArray *)myList
+{
+    if (!_myList) {
+        _myList = [[NSMutableArray alloc] init];
+    }
+    return _myList;
+}
+
+-(NSMutableArray *)friendsPicked {
+    if (!_selectedFriends) {
+        _selectedFriends = [[NSMutableArray alloc] init];
+    }
+    
+    return _selectedFriends;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.textView.text = nil;
-    
+    self.titleLabel.delegate = self;
     
     // Do any additional setup after loading the view.
     
 }
 
-
-
--(void)checkForList
-{
-    //PFQuery *queryForList = [PFQuery queryWithClassName:@"Text"];
-    
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -74,30 +80,56 @@
 - (IBAction)saveBarButtonPressed:(UIBarButtonItem *)sender {
     
     
-    
+    NSLog(@"selection finale : %@", self.selectedFriends);
     
     self.theNewList = [PFObject objectWithClassName:AAListClassKey];
     
     [self.theNewList setObject:self.textView.text forKey:AAListTextKey];
     [self.theNewList setObject:self.titleLabel.text forKey:AAListTitleKey];
     [self.theNewList setObject:[PFUser currentUser] forKey:AAListUserKey];
+    [self.theNewList addObjectsFromArray:self.selectedFriends  forKey:AAListFriendsKey];
     
     
     [self.theNewList saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshTable" object:self];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    [self.titleLabel resignFirstResponder];
     return YES;
 }
 
 
+#pragma mark - Segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"listToFriendPickSegue"]) {
+        
+        if ([segue.destinationViewController isKindOfClass:[AAFFriendPickerTableViewController class]]) {
+            AAFFriendPickerTableViewController *pickerSegue = segue.destinationViewController;
+            pickerSegue.delegate = self;
+        }
+    }
+}
+
+
+
+-(IBAction)shareButtonPressed:(UIBarButtonItem *)sender {
+    [self performSegueWithIdentifier:@"listToFriendPickSegue" sender:nil];
+}
+
+
+#pragma mark - Delegate
+
+-(void)didPickFriends:(NSMutableArray *)friendsPicked{
+    
+    self.selectedFriends = friendsPicked;
+}
 
 
 

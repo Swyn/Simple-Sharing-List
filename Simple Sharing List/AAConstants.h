@@ -47,6 +47,7 @@ extern NSString *const AAUserFacebookIDKey;
 extern NSString *const AAUserPhotoIDKey;
 extern NSString *const AAUserProfilePictureKey;
 extern NSString *const AAUserFacebookFriendsKey;
+extern NSString *const AAUSerProfilePicSmallKey;
 
 
 #pragma mark - PFObject List Class
@@ -57,6 +58,7 @@ extern NSString *const AAListClassKey;
 extern NSString *const AAListUserKey;
 extern NSString *const AAListTitleKey;
 extern NSString *const AAListTextKey;
+extern NSString *const AAListFriendsKey;
 
 #pragma mark - Cached List Attributes
 //keys

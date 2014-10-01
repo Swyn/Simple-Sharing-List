@@ -8,22 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "AAFFriendPickerTableViewController.h"
 
 @class AAListViewController;
 
 @protocol AAListViewControllerDelegate <NSObject>
 
-//-(void)didDismissAAListViewController:(AAListViewController *)vc;
-
 @end
 
-@interface AAListViewController : UIViewController <FBFriendPickerDelegate>
+@interface AAListViewController : UIViewController <AAFFriendPickerTableViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) id <AAListViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) NSArray *userList;
 @property (strong, nonatomic) NSString *userFBID;
-
-
 
 @end
