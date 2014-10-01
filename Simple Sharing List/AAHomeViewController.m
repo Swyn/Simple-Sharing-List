@@ -84,7 +84,7 @@
 //    [queryForSelf whereKey:@"user" equalTo:currentUser];
     
     PFQuery *queryForFriends = [PFQuery queryWithClassName:self.parseClassName];
-    [queryForFriends whereKey:@"friend" equalTo:[[currentUser] objectId]];
+//    [queryForFriends whereKey:@"friend" equalTo:[[currentUser] objectId]];
     
     
     

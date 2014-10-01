@@ -122,6 +122,9 @@
 -(IBAction)shareButtonPressed:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:@"listToFriendPickSegue" sender:nil];
 }
+- (IBAction)testButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"toYopSegue" sender:nil];
+}
 
 
 #pragma mark - Delegate
