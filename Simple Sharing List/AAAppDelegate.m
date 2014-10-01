@@ -15,10 +15,6 @@
     
     // **************************************************************************************************************************************************************************************
     // Welcome to Simple Sharing List!
-    // An easy way to create list, reminders and share them with you co-workers & friends
-    // Have a nice time reviewing this code and if you have an observation or want any kind of informations do not hesitate to contact me @ :
-    // alexandre.arrighi@gmail.com
-    // 06.99.17.59.09
     //***************************************************************************************************************************************************************************************
     
     
