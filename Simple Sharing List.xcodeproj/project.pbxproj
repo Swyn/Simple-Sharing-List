@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		612F6BC72CD94314B9F0218D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A97389EC697842A29A83D327 /* libPods.a */; };
 		AC117C9B19CB0B07000CBF56 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC117C9A19CB0B07000CBF56 /* ParseFacebookUtils.framework */; };
+		AC1796DB19DEFF6500291909 /* AAFriendSharingOldListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1796DA19DEFF6500291909 /* AAFriendSharingOldListTableViewController.m */; };
+		AC30C49719E32BEE00629FF3 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC30C49619E32BEE00629FF3 /* iTunesArtwork@2x.png */; };
+		AC30C49A19E331ED00629FF3 /* iTunesArtwork@2x-76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = AC30C49819E331ED00629FF3 /* iTunesArtwork@2x-76x76.png */; };
+		AC30C49B19E331ED00629FF3 /* iTunesArtwork@2x-152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = AC30C49919E331ED00629FF3 /* iTunesArtwork@2x-152x152.png */; };
 		AC58773D19DAE513004CBDFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC58773C19DAE513004CBDFF /* Main.storyboard */; };
 		AC5B1FB819D99EBA008A890C /* AAFFriendPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B1FB719D99EBA008A890C /* AAFFriendPickerTableViewController.m */; };
 		AC82B13B19A6E10700A0AD19 /* AAUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AC82B13A19A6E10700A0AD19 /* AAUtility.m */; };
@@ -50,6 +54,11 @@
 		3B4DAC222F514F1ABE2695A7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A97389EC697842A29A83D327 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC117C9A19CB0B07000CBF56 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = Pods/ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		AC1796D919DEFF6500291909 /* AAFriendSharingOldListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFriendSharingOldListTableViewController.h; sourceTree = "<group>"; };
+		AC1796DA19DEFF6500291909 /* AAFriendSharingOldListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFriendSharingOldListTableViewController.m; sourceTree = "<group>"; };
+		AC30C49619E32BEE00629FF3 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		AC30C49819E331ED00629FF3 /* iTunesArtwork@2x-76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x-76x76.png"; sourceTree = "<group>"; };
+		AC30C49919E331ED00629FF3 /* iTunesArtwork@2x-152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x-152x152.png"; sourceTree = "<group>"; };
 		AC58773C19DAE513004CBDFF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AC5B1FB619D99EBA008A890C /* AAFFriendPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFFriendPickerTableViewController.h; sourceTree = "<group>"; };
 		AC5B1FB719D99EBA008A890C /* AAFFriendPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFFriendPickerTableViewController.m; sourceTree = "<group>"; };
@@ -145,6 +154,9 @@
 				AC82B13A19A6E10700A0AD19 /* AAUtility.m */,
 				AC82B14519A6F71E00A0AD19 /* Reachability.h */,
 				AC82B14619A6F71E00A0AD19 /* Reachability.m */,
+				AC30C49619E32BEE00629FF3 /* iTunesArtwork@2x.png */,
+				AC30C49819E331ED00629FF3 /* iTunesArtwork@2x-76x76.png */,
+				AC30C49919E331ED00629FF3 /* iTunesArtwork@2x-152x152.png */,
 			);
 			name = Utility;
 			path = ..;
@@ -155,6 +167,8 @@
 			children = (
 				AC5B1FB619D99EBA008A890C /* AAFFriendPickerTableViewController.h */,
 				AC5B1FB719D99EBA008A890C /* AAFFriendPickerTableViewController.m */,
+				AC1796D919DEFF6500291909 /* AAFriendSharingOldListTableViewController.h */,
+				AC1796DA19DEFF6500291909 /* AAFriendSharingOldListTableViewController.m */,
 			);
 			name = "Friend Sharing";
 			sourceTree = "<group>";
@@ -357,6 +371,9 @@
 				AC58773D19DAE513004CBDFF /* Main.storyboard in Resources */,
 				ACDAA4F8198AF0A000AAB5E0 /* InfoPlist.strings in Resources */,
 				ACDAA500198AF0A000AAB5E0 /* Images.xcassets in Resources */,
+				AC30C49A19E331ED00629FF3 /* iTunesArtwork@2x-76x76.png in Resources */,
+				AC30C49B19E331ED00629FF3 /* iTunesArtwork@2x-152x152.png in Resources */,
+				AC30C49719E32BEE00629FF3 /* iTunesArtwork@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +428,7 @@
 				ACDAA533198C4BC900AAB5E0 /* AAOldViewController.m in Sources */,
 				ACDAA528198C345700AAB5E0 /* AAListViewController.m in Sources */,
 				ACDAA520198C0A1B00AAB5E0 /* AALoginViewController.m in Sources */,
+				AC1796DB19DEFF6500291909 /* AAFriendSharingOldListTableViewController.m in Sources */,
 				AC82B13E19A6E46600A0AD19 /* UIImage+ResizeAdditions.m in Sources */,
 				AC82B14419A6E49800A0AD19 /* UIImage+RoundedCornerAdditions.m in Sources */,
 				AC82B14319A6E49800A0AD19 /* UIImage+AlphaAdditions.m in Sources */,

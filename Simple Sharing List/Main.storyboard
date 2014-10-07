@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6246" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="w1e-Rw-Vdk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="w1e-Rw-Vdk">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6239"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -75,9 +75,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="lRy-zz-wfu">
+                        <barButtonItem key="leftBarButtonItem" title="LogOut" id="Zeo-xt-rpr"/>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="nOQ-rF-UjZ">
                             <connections>
-                                <segue destination="023-b2-UEe" kind="push" id="bSb-v1-Vr0"/>
+                                <segue destination="023-b2-UEe" kind="push" id="CaJ-uH-cdj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -85,33 +86,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQs-Vy-mUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="432" y="-294"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="gxj-Zs-IAU">
-            <objects>
-                <viewController id="dN8-4A-FUU" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ae3-HW-3dy"/>
-                        <viewControllerLayoutGuide type="bottom" id="3yN-C2-wGh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SMi-o5-kCJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yop" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VkL-zx-6jD">
-                                <rect key="frame" x="137" y="164" width="85" height="145"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Mf4-Mc-gqZ"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kb9-qZ-EMF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="432" y="1055"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="d9G-Dk-N4e">
@@ -130,11 +104,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-ly-H4b">
-                                <rect key="frame" x="0.0" y="100" width="320" height="443"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-ly-H4b">
+                                <rect key="frame" x="0.0" y="100" width="320" height="468"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QV3-o5-2Cd">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="451"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QV3-o5-2Cd">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -143,30 +117,17 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="QV3-o5-2Cd" secondAttribute="trailing" id="2rC-27-HX2"/>
-                                    <constraint firstAttribute="bottom" secondItem="QV3-o5-2Cd" secondAttribute="bottom" constant="-8" id="JtO-kA-d5T"/>
                                     <constraint firstItem="QV3-o5-2Cd" firstAttribute="top" secondItem="cfe-ly-H4b" secondAttribute="top" id="MFU-lc-V58"/>
                                     <constraint firstItem="QV3-o5-2Cd" firstAttribute="centerY" secondItem="cfe-ly-H4b" secondAttribute="centerY" id="S5C-IK-QZ6"/>
                                     <constraint firstItem="QV3-o5-2Cd" firstAttribute="leading" secondItem="cfe-ly-H4b" secondAttribute="leading" id="hFJ-yd-5M2"/>
-                                    <constraint firstItem="QV3-o5-2Cd" firstAttribute="centerX" secondItem="cfe-ly-H4b" secondAttribute="centerX" id="oyM-ex-ltK"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGn-oq-89U">
-                                <rect key="frame" x="106" y="538" width="108" height="30"/>
-                                <state key="normal" title="Test">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="testButtonPressed:" destination="023-b2-UEe" eventType="touchUpInside" id="Azr-eR-LHD"/>
-                                    <segue destination="dN8-4A-FUU" kind="push" identifier="toYopSegue" id="c2T-H7-4Th"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cfe-ly-H4b" firstAttribute="top" secondItem="4jp-hF-5Xt" secondAttribute="top" constant="100" id="Cns-J0-JmK"/>
                             <constraint firstItem="cfe-ly-H4b" firstAttribute="leading" secondItem="kPN-xo-lKi" secondAttribute="leading" id="Prb-Qr-boU"/>
                             <constraint firstItem="cfe-ly-H4b" firstAttribute="leading" secondItem="4jp-hF-5Xt" secondAttribute="leading" id="WlR-aX-aWc"/>
-                            <constraint firstItem="pne-Xc-kbR" firstAttribute="top" secondItem="cfe-ly-H4b" secondAttribute="bottom" constant="25" id="cSq-Xc-M69"/>
                             <constraint firstAttribute="trailing" secondItem="cfe-ly-H4b" secondAttribute="trailing" id="iSp-sL-v72"/>
                             <constraint firstItem="cfe-ly-H4b" firstAttribute="top" secondItem="kPN-xo-lKi" secondAttribute="bottom" constant="2" id="smK-4b-5Hi"/>
                             <constraint firstItem="cfe-ly-H4b" firstAttribute="trailing" secondItem="kPN-xo-lKi" secondAttribute="trailing" id="uZ0-hk-NTd"/>
@@ -194,7 +155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIe-Hz-7gS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="432" y="392"/>
+            <point key="canvasLocation" x="432" y="408"/>
         </scene>
         <!--Friend Picker Table View Controller-->
         <scene sceneID="Xpq-Qo-rK4">
@@ -244,7 +205,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kM5-6P-e2X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="853" y="392"/>
+            <point key="canvasLocation" x="853" y="408"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UGj-No-5a3">
@@ -326,9 +287,14 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="OYI-yz-GjN">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="Ovj-cq-PYY">
+                        <barButtonItem key="leftBarButtonItem" title="Save" id="Ovj-cq-PYY">
                             <connections>
                                 <action selector="saveBarButtonPressed:" destination="4tQ-CN-YQS" id="4Qe-GT-gBi"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Update Sharing" id="UGH-s2-yWX">
+                            <connections>
+                                <segue destination="Hxa-8k-xIL" kind="push" id="avo-fy-xPz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -344,6 +310,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7id-jq-fww" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="853" y="-294"/>
+        </scene>
+        <!--Friend Sharing Old List Table View Controller-->
+        <scene sceneID="Q1q-mh-gx2">
+            <objects>
+                <tableViewController id="Hxa-8k-xIL" customClass="AAFriendSharingOldListTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7dc-28-BwN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="vgf-dH-pHs" style="IBUITableViewCellStyleDefault" id="f8G-WF-fry">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f8G-WF-fry" id="LcP-Ok-AKa">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vgf-dH-pHs">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Hxa-8k-xIL" id="uoE-r2-PCn"/>
+                            <outlet property="delegate" destination="Hxa-8k-xIL" id="5FG-Eg-hZG"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="aSf-cv-fPH">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="vej-cp-ia8">
+                            <connections>
+                                <action selector="cancelBarButtonPressed:" destination="Hxa-8k-xIL" id="70a-VC-EHS"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="fgR-Y2-0uf">
+                            <connections>
+                                <action selector="shareBarButtonPressed:" destination="Hxa-8k-xIL" id="aFh-cP-slG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cancelButton" destination="vej-cp-ia8" id="IXp-Jz-lUy"/>
+                        <outlet property="shareButton" destination="7dc-28-BwN" id="Ufa-ry-obk"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kfE-wh-BiV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1264" y="-294"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

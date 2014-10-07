@@ -87,13 +87,18 @@
     [self.theNewList setObject:self.textView.text forKey:AAListTextKey];
     [self.theNewList setObject:self.titleLabel.text forKey:AAListTitleKey];
     [self.theNewList setObject:[PFUser currentUser] forKey:AAListUserKey];
-    [self.theNewList addObjectsFromArray:self.selectedFriends  forKey:AAListFriendsKey];
+
+    [self.theNewList setObject:self.selectedFriends forKey:AAActivityTypeJoined];
+    
     
     
     [self.theNewList saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshTable" object:self];
             [self.navigationController popViewControllerAnimated:YES];
+        }
+        else {
+            NSLog(@"erreur : %@", error);
         }
     }];
 }
@@ -122,9 +127,7 @@
 -(IBAction)shareButtonPressed:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:@"listToFriendPickSegue" sender:nil];
 }
-- (IBAction)testButtonPressed:(id)sender {
-    [self performSegueWithIdentifier:@"toYopSegue" sender:nil];
-}
+
 
 
 #pragma mark - Delegate

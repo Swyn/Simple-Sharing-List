@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
+#import "AAFriendSharingOldListTableViewController.h"
 
-@interface AAOldViewController : UIViewController
+@class AAOldViewController;
+
+@protocol AAListViewControllerDelegate <NSObject>
+
+@end
+
+@interface AAOldViewController : UIViewController <AAFriendSharingOldListTableViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) PFObject *oldList;
 

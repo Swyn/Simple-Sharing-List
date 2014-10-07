@@ -7,8 +7,9 @@
 //
 
 #import "AAOldViewController.h"
+#import "AAFriendSharingOldListTableViewController.h"
 
-@interface AAOldViewController ()
+@interface AAOldViewController () <AAFriendSharingOldListTableViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *titleLabel;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
@@ -17,11 +18,29 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
+@property (strong, nonatomic) NSMutableArray *myList;
+
+@property (strong, nonatomic) NSMutableArray *selectedFriends;
+
 
 
 @end
 
 @implementation AAOldViewController
+
+-(NSMutableArray *)selectedFriends {
+    if (!_selectedFriends) {
+        _selectedFriends = [[NSMutableArray alloc]init];
+    }
+    return _selectedFriends;
+}
+
+-(NSMutableArray *)myList {
+    if (!_myList) {
+        _myList = [[NSMutableArray alloc] init];
+    }
+    return _myList;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +55,7 @@
 {
     [super viewDidLoad];
     self.textView.text = nil;
+    self.titleLabel.delegate = self;
     [self updateLabels];
     // Do any additional setup after loading the view.
 }
@@ -61,13 +81,35 @@
     }];
    
 }
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.titleLabel resignFirstResponder];
+    return YES;
+}
+
+
 - (IBAction)shareWithButtonPressed:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"listToFriendPickSegue" sender:nil];
+    
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"listToFriendPickSegue"]) {
+        if ([segue.destinationViewController isKindOfClass:[AAFriendSharingOldListTableViewController class]]) {
+            AAFriendSharingOldListTableViewController *pickerSegue = segue.destinationViewController;
+            pickerSegue.delegate = self;
+        }
+    }
 }
 
 -(void)updateLabels
 {
     self.titleLabel.text = [self.oldList objectForKey:AAListTitleKey];
     self.textView.text = [self.oldList objectForKey:AAListTextKey];
+}
+
+-(void)didPickFriend:(NSMutableArray *)friendPicked {
+    self.selectedFriends = friendPicked;
 }
 
 /*

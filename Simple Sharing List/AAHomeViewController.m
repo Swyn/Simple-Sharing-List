@@ -14,12 +14,28 @@
 
 @interface AAHomeViewController ()
 
+@property (strong, nonatomic) NSMutableArray *friendList;
+@property (strong, nonatomic) NSMutableArray *listView;
+
 
 @end
 
 @implementation AAHomeViewController
 
 
+-(NSMutableArray *)friendList {
+    if (!_friendList) {
+        _friendList = [[NSMutableArray alloc] init];
+    }
+    return _friendList;
+}
+
+-(NSMutableArray *)listView{
+    if (!_listView){
+        _listView = [[NSMutableArray alloc]init];
+    }
+    return _listView;
+}
 
 -(id)initWithCoder:(NSCoder *)aCoder
 {
@@ -46,6 +62,7 @@
 -(void)refreshTable:(NSNotification *)notification
 {
     [self loadObjects];
+    
 }
 
 
@@ -54,9 +71,11 @@
 {
 
     [super viewDidLoad];
+    [self updateListTable];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable:) name:@"refreshTable" object:nil];
     // Do any additional setup after loading the view.
+    
     
     
    
@@ -72,26 +91,51 @@
 {
     [super objectsDidLoad:error];
     NSLog(@"error : %@", [error localizedDescription]);
+    if (!error) {
+        [self updateListTable];
+    }
 }
+
+
+
 
 #pragma mark - initial Query
 
--(PFQuery *)queryForTable
+-(void)updateListTable
 {
-        PFUser *currentUser = [PFUser currentUser];
+    [self.friendList removeAllObjects];
+    NSLog(@"bonjour");
+    PFUser *currentUser = [PFUser currentUser];
     
-//    PFQuery *queryForSelf = [PFQuery queryWithClassName:self.parseClassName];
-//    [queryForSelf whereKey:@"user" equalTo:currentUser];
+    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    [query whereKey:@"user" equalTo:currentUser];
     
-    PFQuery *queryForFriends = [PFQuery queryWithClassName:self.parseClassName];
-//    [queryForFriends whereKey:@"friend" equalTo:[[currentUser] objectId]];
+    PFQuery *queryForShared = [PFQuery queryWithClassName:AAActivityClassKey];
+    [queryForShared whereKey:AAActivityToUserKey equalTo:currentUser];
+    [queryForShared includeKey:@"objectId"];
+    [queryForShared findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [self.friendList removeAllObjects];
+        self.friendList = [objects mutableCopy];
+        NSLog(@"self.friendList : %@", self.friendList);
+        
+    }];
     
+    PFQuery *sharedList = [PFQuery queryWithClassName:self.parseClassName];
+    int i;
+    for (i = 0 ; i < [self.friendList count] ; i++) {
+    [sharedList whereKey:AAActivityTypeJoined containsString:[self.friendList objectAtIndex:i]];
+    }
     
-    
-//    PFQuery *queryCombined = [PFQuery orQueryWithSubqueries:@[queryForSelf, queryForFriends]];
-    
-    return queryForFriends;
-    
+    PFQuery *joinQuery = [PFQuery orQueryWithSubqueries:@[query, sharedList]];
+    [joinQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            
+            [self.listView removeAllObjects];
+            self.listView = [objects mutableCopy];
+            NSLog(@"listView : %@", self.listView);
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 
@@ -112,9 +156,11 @@
 
 #pragma mark - UITableView DataSources
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.listView count];
+}
 
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     static NSString *simpleTableIdentifier = @"Cell";
@@ -125,8 +171,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.textLabel.text = [object objectForKey:self.textKey];
+    PFObject *list = [self.listView objectAtIndex:indexPath.row];
     
+    cell.textLabel.text = list[@"title"];
     return cell;
 }
 
