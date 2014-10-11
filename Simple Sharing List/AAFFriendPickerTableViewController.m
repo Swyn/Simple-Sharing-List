@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSMutableArray *friendsArray;
 @property (strong, nonatomic) NSMutableArray *selectedFriends;
 @property (strong, nonatomic) NSMutableArray *myFriends;
+@property (strong, nonatomic) PFUser *friendInTable;
 
 
 
@@ -87,9 +88,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIndetifier forIndexPath:indexPath];
     
     PFObject *friend = [self.friendsArray objectAtIndex:indexPath.row];
-    PFUser *friendInTable = [friend objectForKey:@"toUser"];
+    self.friendInTable = [friend objectForKey:@"toUser"];
+    
 
-    cell.textLabel.text = friendInTable[@"name"];
+    cell.textLabel.text = self.friendInTable[@"name"];
     
     if ([self.selectedFriends containsObject:[self.friendsArray objectAtIndex:indexPath.row]]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -105,7 +107,9 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [self.selectedFriends addObject:[self.friendsArray objectAtIndex:indexPath.row]];
+        PFObject *friend = [self.friendsArray objectAtIndex:indexPath.row];
+        self.friendInTable = [friend objectForKey:@"toUser"];
+        [self.selectedFriends addObject:self.friendInTable];
         
         NSLog(@"%@", self.selectedFriends);
     }

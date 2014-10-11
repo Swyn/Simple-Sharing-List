@@ -29,6 +29,7 @@
 @property (strong, nonatomic) PFObject *theNewList;
 
 
+
 @end
 
 @implementation AAListViewController
@@ -63,8 +64,11 @@
 {
     [super viewDidLoad];
     
+    [self.selectedFriends removeAllObjects];
+    
     self.textView.text = nil;
     self.titleLabel.delegate = self;
+    
     
     // Do any additional setup after loading the view.
     
@@ -81,17 +85,27 @@
     
     
     NSLog(@"selection finale : %@", self.selectedFriends);
+    PFUser *currentUser = [PFUser currentUser];
+    PFACL *sharingACL = [PFACL ACL];
     
     self.theNewList = [PFObject objectWithClassName:AAListClassKey];
     
     [self.theNewList setObject:self.textView.text forKey:AAListTextKey];
     [self.theNewList setObject:self.titleLabel.text forKey:AAListTitleKey];
     [self.theNewList setObject:[PFUser currentUser] forKey:AAListUserKey];
-
-    [self.theNewList setObject:self.selectedFriends forKey:AAActivityTypeJoined];
     
+    for (PFUser *user in self.selectedFriends) {
+        [sharingACL setWriteAccess:YES forUser:user];
+        [sharingACL setReadAccess:YES forUser:user];
+        PFRelation *relation = [self.theNewList relationForKey:@"Writer"];
+        [relation addObject:user];
+    }
     
-    
+    [sharingACL setReadAccess:YES forUser:currentUser];
+    [sharingACL setWriteAccess:YES forUser:currentUser];
+    [sharingACL setPublicWriteAccess:NO];
+    [sharingACL setPublicReadAccess:NO];
+    [self.theNewList setACL:sharingACL];
     [self.theNewList saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshTable" object:self];
@@ -123,10 +137,6 @@
 }
 
 
-
--(IBAction)shareButtonPressed:(UIBarButtonItem *)sender {
-    [self performSegueWithIdentifier:@"listToFriendPickSegue" sender:nil];
-}
 
 
 

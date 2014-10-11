@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="w1e-Rw-Vdk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="w1e-Rw-Vdk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
@@ -64,9 +64,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="4tQ-CN-YQS" kind="push" identifier="homeToOldListSegue" id="UKU-TG-L6C"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -82,6 +79,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="4tQ-CN-YQS" kind="push" identifier="homeToOldListSegue" id="1t2-FX-7xV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQs-Vy-mUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -237,53 +237,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="titre :" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LuA-Zp-9Zq">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="titre :" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LuA-Zp-9Zq">
                                 <rect key="frame" x="0.0" y="68" width="320" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6BN-qq-LMe">
-                                <rect key="frame" x="0.0" y="100" width="320" height="435"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6BN-qq-LMe">
+                                <rect key="frame" x="0.0" y="98" width="320" height="470"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wff-I1-N6I">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="430"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wff-I1-N6I">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="470"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="wff-I1-N6I" firstAttribute="top" secondItem="6BN-qq-LMe" secondAttribute="top" id="2oF-zE-bZY"/>
-                                    <constraint firstAttribute="trailing" secondItem="wff-I1-N6I" secondAttribute="trailing" id="Yb7-dm-kyj"/>
-                                    <constraint firstItem="wff-I1-N6I" firstAttribute="centerX" secondItem="6BN-qq-LMe" secondAttribute="centerX" id="eGy-Nk-4Qw"/>
-                                    <constraint firstAttribute="bottom" secondItem="wff-I1-N6I" secondAttribute="bottom" constant="5" id="fWQ-pc-kJg"/>
-                                    <constraint firstItem="wff-I1-N6I" firstAttribute="leading" secondItem="6BN-qq-LMe" secondAttribute="leading" id="gRT-au-cMj"/>
-                                    <constraint firstItem="wff-I1-N6I" firstAttribute="centerY" secondItem="6BN-qq-LMe" secondAttribute="centerY" constant="-2.5" id="vEd-B1-7XC"/>
-                                </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="teE-e3-cK9">
-                                <rect key="frame" x="116" y="538" width="88" height="30"/>
-                                <state key="normal" title="Share With...">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="shareWithButtonPressed:" destination="4tQ-CN-YQS" eventType="touchUpInside" id="JBg-F9-bJs"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="6BN-qq-LMe" secondAttribute="trailing" id="FdV-eJ-qWU"/>
-                            <constraint firstItem="6BN-qq-LMe" firstAttribute="leading" secondItem="VSQ-hf-ygH" secondAttribute="leading" id="RGd-Zr-VRo"/>
-                            <constraint firstItem="LuA-Zp-9Zq" firstAttribute="trailing" secondItem="6BN-qq-LMe" secondAttribute="trailing" id="UHq-Nj-6WS"/>
-                            <constraint firstItem="6BN-qq-LMe" firstAttribute="centerX" secondItem="teE-e3-cK9" secondAttribute="centerX" id="UW6-1v-tKB"/>
-                            <constraint firstItem="6BN-qq-LMe" firstAttribute="top" secondItem="VSQ-hf-ygH" secondAttribute="top" constant="100" id="bcI-b6-JAz"/>
-                            <constraint firstItem="teE-e3-cK9" firstAttribute="top" secondItem="6BN-qq-LMe" secondAttribute="bottom" constant="3" id="eV6-29-STF"/>
-                            <constraint firstItem="6BN-qq-LMe" firstAttribute="top" secondItem="LuA-Zp-9Zq" secondAttribute="bottom" constant="2" id="m2k-B8-UJm"/>
-                            <constraint firstAttribute="bottom" secondItem="6BN-qq-LMe" secondAttribute="bottom" constant="33" id="tsI-CT-RRP"/>
-                            <constraint firstItem="LuA-Zp-9Zq" firstAttribute="leading" secondItem="6BN-qq-LMe" secondAttribute="leading" id="y5D-SC-maV"/>
-                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="OYI-yz-GjN">
@@ -298,13 +270,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="saveBarButton" destination="Ovj-cq-PYY" id="gXc-Lh-0Lh"/>
                         <outlet property="scrollView" destination="6BN-qq-LMe" id="Mow-MJ-5ul"/>
-                        <outlet property="shareWithButton" destination="teE-e3-cK9" id="EN3-0D-pga"/>
                         <outlet property="textView" destination="wff-I1-N6I" id="9Gw-lI-6Og"/>
                         <outlet property="titleLabel" destination="LuA-Zp-9Zq" id="MgK-Kc-dYO"/>
+                        <outlet property="updateSharingButton" destination="UGH-s2-yWX" id="8gV-uw-RHc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7id-jq-fww" userLabel="First Responder" sceneMemberID="firstResponder"/>

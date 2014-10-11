@@ -13,7 +13,6 @@
 		AC30C49719E32BEE00629FF3 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC30C49619E32BEE00629FF3 /* iTunesArtwork@2x.png */; };
 		AC30C49A19E331ED00629FF3 /* iTunesArtwork@2x-76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = AC30C49819E331ED00629FF3 /* iTunesArtwork@2x-76x76.png */; };
 		AC30C49B19E331ED00629FF3 /* iTunesArtwork@2x-152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = AC30C49919E331ED00629FF3 /* iTunesArtwork@2x-152x152.png */; };
-		AC58773D19DAE513004CBDFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC58773C19DAE513004CBDFF /* Main.storyboard */; };
 		AC5B1FB819D99EBA008A890C /* AAFFriendPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5B1FB719D99EBA008A890C /* AAFFriendPickerTableViewController.m */; };
 		AC82B13B19A6E10700A0AD19 /* AAUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AC82B13A19A6E10700A0AD19 /* AAUtility.m */; };
 		AC82B13E19A6E46600A0AD19 /* UIImage+ResizeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC82B13D19A6E46600A0AD19 /* UIImage+ResizeAdditions.m */; };
@@ -38,6 +37,7 @@
 		ACDAA528198C345700AAB5E0 /* AAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDAA527198C345700AAB5E0 /* AAListViewController.m */; };
 		ACDAA530198C484600AAB5E0 /* AAConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDAA52F198C484600AAB5E0 /* AAConstants.m */; };
 		ACDAA533198C4BC900AAB5E0 /* AAOldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDAA532198C4BC900AAB5E0 /* AAOldViewController.m */; };
+		ACE4818F19E7FE5C00418804 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE4818E19E7FE5C00418804 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +59,6 @@
 		AC30C49619E32BEE00629FF3 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		AC30C49819E331ED00629FF3 /* iTunesArtwork@2x-76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x-76x76.png"; sourceTree = "<group>"; };
 		AC30C49919E331ED00629FF3 /* iTunesArtwork@2x-152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x-152x152.png"; sourceTree = "<group>"; };
-		AC58773C19DAE513004CBDFF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AC5B1FB619D99EBA008A890C /* AAFFriendPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAFFriendPickerTableViewController.h; sourceTree = "<group>"; };
 		AC5B1FB719D99EBA008A890C /* AAFFriendPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAFFriendPickerTableViewController.m; sourceTree = "<group>"; };
 		AC82B13919A6E10700A0AD19 /* AAUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAUtility.h; path = "Simple Sharing List/AAUtility.h"; sourceTree = "<group>"; };
@@ -100,6 +99,7 @@
 		ACDAA52F198C484600AAB5E0 /* AAConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAConstants.m; path = "Simple Sharing List/AAConstants.m"; sourceTree = "<group>"; };
 		ACDAA531198C4BC900AAB5E0 /* AAOldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAOldViewController.h; sourceTree = "<group>"; };
 		ACDAA532198C4BC900AAB5E0 /* AAOldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOldViewController.m; sourceTree = "<group>"; };
+		ACE4818E19E7FE5C00418804 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = "Simple Sharing List/Main.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,20 +162,28 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		ACB789A519BCC57E00800DB7 /* Friend Sharing */ = {
+		ACAB864D19E6BA8900ACD69E /* Friend Sharing Old List */ = {
+			isa = PBXGroup;
+			children = (
+				AC1796D919DEFF6500291909 /* AAFriendSharingOldListTableViewController.h */,
+				AC1796DA19DEFF6500291909 /* AAFriendSharingOldListTableViewController.m */,
+			);
+			name = "Friend Sharing Old List";
+			sourceTree = "<group>";
+		};
+		ACB789A519BCC57E00800DB7 /* Friend Sharing New List */ = {
 			isa = PBXGroup;
 			children = (
 				AC5B1FB619D99EBA008A890C /* AAFFriendPickerTableViewController.h */,
 				AC5B1FB719D99EBA008A890C /* AAFFriendPickerTableViewController.m */,
-				AC1796D919DEFF6500291909 /* AAFriendSharingOldListTableViewController.h */,
-				AC1796DA19DEFF6500291909 /* AAFriendSharingOldListTableViewController.m */,
 			);
-			name = "Friend Sharing";
+			name = "Friend Sharing New List";
 			sourceTree = "<group>";
 		};
 		ACDAA4E1198AF0A000AAB5E0 = {
 			isa = PBXGroup;
 			children = (
+				ACE4818E19E7FE5C00418804 /* Main.storyboard */,
 				ACDAA4F3198AF0A000AAB5E0 /* Simple Sharing List */,
 				ACDAA50C198AF0A000AAB5E0 /* Simple Sharing ListTests */,
 				ACDAA4EC198AF0A000AAB5E0 /* Frameworks */,
@@ -209,14 +217,14 @@
 		ACDAA4F3198AF0A000AAB5E0 /* Simple Sharing List */ = {
 			isa = PBXGroup;
 			children = (
-				AC58773C19DAE513004CBDFF /* Main.storyboard */,
 				ACDAA4FC198AF0A000AAB5E0 /* AAAppDelegate.h */,
 				ACDAA4FD198AF0A000AAB5E0 /* AAAppDelegate.m */,
 				ACDAA525198C0F0900AAB5E0 /* Login */,
 				ACDAA524198C0F0400AAB5E0 /* Home */,
 				ACDAA529198C345E00AAB5E0 /* New List */,
 				ACDAA534198C4BD500AAB5E0 /* Old List */,
-				ACB789A519BCC57E00800DB7 /* Friend Sharing */,
+				ACB789A519BCC57E00800DB7 /* Friend Sharing New List */,
+				ACAB864D19E6BA8900ACD69E /* Friend Sharing Old List */,
 				AC82B14919A7C9B600A0AD19 /* Utility */,
 				ACDAA4FF198AF0A000AAB5E0 /* Images.xcassets */,
 				ACDAA4F4198AF0A000AAB5E0 /* Supporting Files */,
@@ -368,10 +376,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC58773D19DAE513004CBDFF /* Main.storyboard in Resources */,
 				ACDAA4F8198AF0A000AAB5E0 /* InfoPlist.strings in Resources */,
 				ACDAA500198AF0A000AAB5E0 /* Images.xcassets in Resources */,
 				AC30C49A19E331ED00629FF3 /* iTunesArtwork@2x-76x76.png in Resources */,
+				ACE4818F19E7FE5C00418804 /* Main.storyboard in Resources */,
 				AC30C49B19E331ED00629FF3 /* iTunesArtwork@2x-152x152.png in Resources */,
 				AC30C49719E32BEE00629FF3 /* iTunesArtwork@2x.png in Resources */,
 			);

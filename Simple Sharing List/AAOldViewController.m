@@ -13,10 +13,11 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *titleLabel;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
-@property (strong, nonatomic) IBOutlet UIButton *shareWithButton;
+
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *updateSharingButton;
 
 @property (strong, nonatomic) NSMutableArray *myList;
 
@@ -28,7 +29,7 @@
 
 @implementation AAOldViewController
 
--(NSMutableArray *)selectedFriends {
+-(NSMutableArray *)friendsPicked {
     if (!_selectedFriends) {
         _selectedFriends = [[NSMutableArray alloc]init];
     }
@@ -54,9 +55,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+     self.updateSharingButton.enabled = YES;
     self.textView.text = nil;
     self.titleLabel.delegate = self;
+    [self.selectedFriends removeAllObjects];
     [self updateLabels];
+   
+    
     // Do any additional setup after loading the view.
 }
 
@@ -70,15 +75,34 @@
 
 - (IBAction)saveBarButtonPressed:(UIBarButtonItem *)sender{
     
+    
+    NSLog(@"self.selected friend : %@", self.selectedFriends);
+    
+    PFUser *currentUser = [PFUser currentUser];
+    PFACL *sharingACL = [PFACL ACL];
+    
+    for (PFUser *user in self.selectedFriends) {
+        [sharingACL setWriteAccess:YES forUser:user];
+        [sharingACL setReadAccess:YES forUser:user];
+    }
+    
+    [sharingACL setReadAccess:YES forUser:currentUser];
+    [sharingACL setWriteAccess:YES forUser:currentUser];
+    [sharingACL setPublicWriteAccess:NO];
+    [sharingACL setPublicReadAccess:NO];
+    
     PFQuery *query = [PFQuery queryWithClassName:AAListClassKey];
     [query getObjectInBackgroundWithId:self.oldList.objectId block:^(PFObject *object, NSError *error) {
         object[AAListTitleKey] = self.titleLabel.text;
         object[AAListTextKey] = self.textView.text;
+        object.ACL = sharingACL;
+    
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshTable" object:self];
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }];
+
    
 }
 
@@ -88,14 +112,13 @@
 }
 
 
-- (IBAction)shareWithButtonPressed:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"listToFriendPickSegue" sender:nil];
-    
-}
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"listToFriendPickSegue"]) {
+        
         if ([segue.destinationViewController isKindOfClass:[AAFriendSharingOldListTableViewController class]]) {
+            
             AAFriendSharingOldListTableViewController *pickerSegue = segue.destinationViewController;
             pickerSegue.delegate = self;
         }
@@ -108,8 +131,9 @@
     self.textView.text = [self.oldList objectForKey:AAListTextKey];
 }
 
--(void)didPickFriend:(NSMutableArray *)friendPicked {
-    self.selectedFriends = friendPicked;
+
+-(void)didPickFriend:(NSMutableArray *)friendsPicked{
+    self.selectedFriends = friendsPicked;
 }
 
 /*

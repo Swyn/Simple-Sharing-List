@@ -72,6 +72,8 @@
 
     [super viewDidLoad];
     [self updateListTable];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable:) name:@"refreshTable" object:nil];
     // Do any additional setup after loading the view.
@@ -104,38 +106,36 @@
 -(void)updateListTable
 {
     [self.friendList removeAllObjects];
-    NSLog(@"bonjour");
-    PFUser *currentUser = [PFUser currentUser];
-    
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    [query whereKey:@"user" equalTo:currentUser];
-    
-    PFQuery *queryForShared = [PFQuery queryWithClassName:AAActivityClassKey];
-    [queryForShared whereKey:AAActivityToUserKey equalTo:currentUser];
-    [queryForShared includeKey:@"objectId"];
-    [queryForShared findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [self.friendList removeAllObjects];
-        self.friendList = [objects mutableCopy];
-        NSLog(@"self.friendList : %@", self.friendList);
-        
+    [query orderByDescending:@"updatedAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [self.listView removeAllObjects];
+        [self.listView addObjectsFromArray:objects];
+        [self.tableView reloadData];
     }];
     
-    PFQuery *sharedList = [PFQuery queryWithClassName:self.parseClassName];
-    int i;
-    for (i = 0 ; i < [self.friendList count] ; i++) {
-    [sharedList whereKey:AAActivityTypeJoined containsString:[self.friendList objectAtIndex:i]];
-    }
     
-    PFQuery *joinQuery = [PFQuery orQueryWithSubqueries:@[query, sharedList]];
-    [joinQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            
-            [self.listView removeAllObjects];
-            self.listView = [objects mutableCopy];
-            NSLog(@"listView : %@", self.listView);
-            [self.tableView reloadData];
-        }
-    }];
+}
+
+
+#pragma mark - UITableView DataSources
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.listView count];
+}
+
+-(PFTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object
+{
+    
+    static NSString *simpleTableIdentifier = @"Cell";
+    
+    PFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier forIndexPath:indexPath];
+    
+    
+    PFObject *list = [self.listView objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = list[@"title"];
+    return cell;
 }
 
 
@@ -145,41 +145,23 @@
 {
     if ([segue.identifier isEqualToString:@"homeToOldListSegue"]) {
         
-        AAOldViewController *nextVC = segue.destinationViewController;
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
-        nextVC.oldList = [self.objects objectAtIndex:indexPath.row];
-       
-
-    }
-}
-
-#pragma mark - UITableView DataSources
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.listView count];
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+        
+        AAOldViewController *nextVX = segue.destinationViewController;
+        NSIndexPath *indexPath = sender;
+        nextVX.oldList = [self.listView objectAtIndex:indexPath.row];
     
-    static NSString *simpleTableIdentifier = @"Cell";
+//    AAOldViewController *nextVC = segue.destinationViewController;
+//    NSIndexPath *indexPath = sender;
+//    nextVC.oldList = [self.listView  objectAtIndex:indexPath.row];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    PFObject *list = [self.listView objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = list[@"title"];
-    return cell;
 }
 
-
-
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"homeToOldListSegue" sender:indexPath];
+}
 
 /*
 #pragma mark - Navigation

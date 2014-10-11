@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSMutableArray *selectedFriends;
 @property (strong, nonatomic) NSMutableArray *myFriends;
 
+@property (strong, nonatomic) PFUser *friendInTable;
+
 @end
 
 @implementation AAFriendSharingOldListTableViewController
@@ -82,19 +84,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Cellidentifier forIndexPath:indexPath];
     
     PFObject *friend = [self.friendArray objectAtIndex:indexPath.row];
-    NSLog(@"friend : %@", friend);
     PFUser *friendInTable = [friend objectForKey:@"toUser"];
-    
-    
     cell.textLabel.text = friendInTable[@"name"];
     
-    if ([self.selectedFriends containsObject:[self.friendArray objectAtIndex:indexPath.row]]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+  
     return cell;
 }
+
+
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,10 +99,16 @@
     
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [self.selectedFriends addObject:[self.friendArray objectAtIndex:indexPath.row]];
+        
+        PFObject *friend = [self.friendArray objectAtIndex:indexPath.row];
+        self.friendInTable = [friend objectForKey:@"toUser"];
+        [self.selectedFriends addObject:self.friendInTable];
+        NSLog(@"self.selected friends : %@", self.selectedFriends);
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
         [self.selectedFriends removeObject:[self.selectedFriends objectAtIndex:indexPath.row]];
+        NSLog(@"self.selected friends : %@", self.selectedFriends);
+
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
