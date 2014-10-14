@@ -11,24 +11,16 @@
 #import "AAOldViewController.h"
 #import "AAConstants.h"
 
-
 @interface AAHomeViewController ()
 
-@property (strong, nonatomic) NSMutableArray *friendList;
 @property (strong, nonatomic) NSMutableArray *listView;
-
 
 @end
 
 @implementation AAHomeViewController
 
+#pragma mark - NSTableView Instantiation
 
--(NSMutableArray *)friendList {
-    if (!_friendList) {
-        _friendList = [[NSMutableArray alloc] init];
-    }
-    return _friendList;
-}
 
 -(NSMutableArray *)listView{
     if (!_listView){
@@ -36,6 +28,8 @@
     }
     return _listView;
 }
+
+#pragma mark - init
 
 -(id)initWithCoder:(NSCoder *)aCoder
 {
@@ -59,6 +53,8 @@
     return self;
 }
 
+#pragma mark - notification
+
 -(void)refreshTable:(NSNotification *)notification
 {
     [self loadObjects];
@@ -66,21 +62,18 @@
 }
 
 
+#pragma mark - viewDidLoad
+
 - (void)viewDidLoad
 
 {
 
     [super viewDidLoad];
-    [self updateListTable];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+    [self updateListTable];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable:) name:@"refreshTable" object:nil];
-    // Do any additional setup after loading the view.
-    
-    
-    
-   
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,15 +98,16 @@
 
 -(void)updateListTable
 {
-    [self.friendList removeAllObjects];
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    [query whereKey:@"Writer" equalTo:[PFUser currentUser]];
     [query orderByDescending:@"updatedAt"];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [self.listView removeAllObjects];
         [self.listView addObjectsFromArray:objects];
         [self.tableView reloadData];
+        
     }];
-    
     
 }
 
@@ -128,9 +122,10 @@
 {
     
     static NSString *simpleTableIdentifier = @"Cell";
-    
     PFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier forIndexPath:indexPath];
-    
+    if (cell == nil) {
+        cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier forIndexPath:indexPath];
+    }
     
     PFObject *list = [self.listView objectAtIndex:indexPath.row];
     
@@ -145,15 +140,9 @@
 {
     if ([segue.identifier isEqualToString:@"homeToOldListSegue"]) {
         
-        
-        
         AAOldViewController *nextVX = segue.destinationViewController;
         NSIndexPath *indexPath = sender;
         nextVX.oldList = [self.listView objectAtIndex:indexPath.row];
-    
-//    AAOldViewController *nextVC = segue.destinationViewController;
-//    NSIndexPath *indexPath = sender;
-//    nextVC.oldList = [self.listView  objectAtIndex:indexPath.row];
     
     }
     
@@ -162,16 +151,5 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"homeToOldListSegue" sender:indexPath];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

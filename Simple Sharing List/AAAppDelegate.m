@@ -13,11 +13,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    // **************************************************************************************************************************************************************************************
-    // Welcome to Simple Sharing List!
-    //***************************************************************************************************************************************************************************************
-    
-    
     // Parse & Facebook Initialization
     
     [Parse setApplicationId:@"C0gpDdmNPFNz9pv3aD6mbkOFjHsUOEexM6B8FN9N"

@@ -131,7 +131,6 @@
         for (NSDictionary *friendData in data ) {
             if (friendData[@"id"]){
                 [facebookIds addObject:friendData[@"id"]];
-                NSLog(@"facebookIds : %@", facebookIds);
             }
         }
         
@@ -141,22 +140,18 @@
             if ([user objectForKey:AAUserFacebookFriendsKey]) {
                 [user removeObjectForKey:AAUserFacebookFriendsKey];
             }
-            NSError *error = nil;
-            
+    
             PFQuery *facebookFriendsQuery = [PFUser query];
             [facebookFriendsQuery whereKey:AAUserFacebookIDKey containedIn:facebookIds];
-            NSLog(@"liste facebookID : %@", facebookIds);
             
             self.simpleSharingListFriends = [[NSMutableArray alloc] init];
             
             [facebookFriendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (!error) {
-                    NSLog(@"comptage : %lu", [objects count]);
                     [self.simpleSharingListFriends removeAllObjects];
                     [self.simpleSharingListFriends addObjectsFromArray:objects];
-                    NSLog(@"liste amis tableau : %@", self.simpleSharingListFriends);
-                    
                     [self.simpleSharingListFriends enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
+                        
                         PFObject *joinActivity = [PFObject objectWithClassName:AAActivityClassKey];
                         [joinActivity setObject:user forKey:AAActivityFromUserKey];
                         [joinActivity setObject:newFriend forKey:AAActivityToUserKey];
@@ -167,32 +162,10 @@
                         joinActivity.ACL = joinACL;
                         
                         [joinActivity saveInBackground];
-                        
-                        NSLog(@"liste amis %@", self.simpleSharingListFriends);
-                        
                     }];
                 }
             }];
-            
-//            if (!error) {
-//                [simpleSharingListFriends enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
-//                    PFObject *joinActivity = [PFObject objectWithClassName:AAActivityClassKey];
-//                    [joinActivity setObject:user forKey:AAActivityFromUserKey];
-//                    [joinActivity setObject:newFriend forKey:AAActivityToUserKey];
-//                    [joinActivity setObject:AAActivityTypeJoined forKey:AAActivityTypeKey];
-//                    
-//                    PFACL *joinACL = [PFACL ACL];
-//                    [joinACL setPublicReadAccess:YES];
-//                    joinActivity.ACL = joinACL;
-//                    
-//                    [joinActivity saveInBackground];
-//                    
-//                    NSLog(@"liste amis %@", simpleSharingListFriends);
-//                    
-//                }];
-//            }
             [user saveEventually];
-            
         }
     }
     else {
@@ -200,7 +173,6 @@
             NSString *facebookName = result[@"name"];
             if (facebookName && [facebookName length] != 0) {
                 [user setObject:facebookName forKey:AAUserNameKey];
-                NSLog(@"facebook Name : %@", facebookName);
                 
             }else {
                 [user setObject:@"Someone" forKey:AAUserNameKey];
@@ -208,7 +180,6 @@
             NSString *facebookId = result[@"id"];
             if (facebookId && [facebookId length] != 0) {
                 [user setObject:facebookId forKey:AAUserFacebookIDKey];
-                NSLog(@"facebook Id : %@", facebookId);
             }
             [user saveEventually];
         }

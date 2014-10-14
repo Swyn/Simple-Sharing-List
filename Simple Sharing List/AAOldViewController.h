@@ -12,11 +12,16 @@
 
 @class AAOldViewController;
 
-@protocol AAListViewControllerDelegate <NSObject>
+@protocol  AAOldViewControllerDelegate <NSObject>
+
 
 @end
 
+
+
 @interface AAOldViewController : UIViewController <AAFriendSharingOldListTableViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
+
+@property (weak, nonatomic) id <AAOldViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) PFObject *oldList;
 

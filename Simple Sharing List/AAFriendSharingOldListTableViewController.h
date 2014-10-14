@@ -10,14 +10,14 @@
 
 @protocol AAFriendSharingOldListTableViewControllerDelegate <NSObject>
 
--(void)didPickFriend:(NSMutableArray *)friendsPicked;
+-(void)didPickFriendForOldList:(NSMutableArray *)friendsPickedForOldList;
 
 @end
 
 @interface AAFriendSharingOldListTableViewController : UITableViewController
 
-@property (weak) id<AAFriendSharingOldListTableViewControllerDelegate> delegate;
+@property (weak) id <AAFriendSharingOldListTableViewControllerDelegate> delegate;
 
-@property (strong, nonatomic) NSArray *friendsAlreadyPicked;
+@property (strong, nonatomic) NSMutableArray *friendsAlreadyPicked;
 
 @end

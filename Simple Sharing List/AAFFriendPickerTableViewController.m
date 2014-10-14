@@ -17,15 +17,24 @@
 @property (strong, nonatomic) NSMutableArray *friendsArray;
 @property (strong, nonatomic) NSMutableArray *selectedFriends;
 @property (strong, nonatomic) NSMutableArray *myFriends;
+
+@property (strong, nonatomic) NSMutableArray *friendList;
+@property (strong, nonatomic) NSMutableArray *arrayOfId;
+@property (strong, nonatomic) NSMutableArray *simpleSharingListFriends;
+
 @property (strong, nonatomic) PFUser *friendInTable;
-
-
 
 @end
 
 @implementation AAFFriendPickerTableViewController
 
-
+-(NSMutableArray *)friendList {
+    if (!_friendList) {
+        _friendList = [[NSMutableArray alloc] init];
+    }
+    
+    return _friendList;
+}
 
 -(NSMutableArray *)myFriends {
     if (!_myFriends){
@@ -41,6 +50,7 @@
     return _selectedFriends;
 }
 
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -54,18 +64,13 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    NSLog(@"nombre d'amis : %lu", [self.friendsArray count]);
     return [self.friendsArray count];
-    
-    
 }
 
 -(void)updateFriendArray {
@@ -75,10 +80,93 @@
     [friendArray findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [self.friendsArray removeAllObjects];
         self.friendsArray = [objects mutableCopy];
-        NSLog(@"friends array : %@", self.friendsArray);
         [self.tableView reloadData];
     }];
 }
+
+-(void)updateFriendFromFB {
+    
+    PFUser *currentUser = [PFUser currentUser];
+    
+    PFQuery *queryForUser = [PFQuery queryWithClassName:AAActivityClassKey];
+    [queryForUser whereKey:AAActivityFromUserKey equalTo:currentUser];
+    [queryForUser findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [self.friendList removeAllObjects];
+        [self.friendList addObjectsFromArray:objects];
+        [self.friendList enumerateObjectsUsingBlock:^(PFUser *user, NSUInteger idx, BOOL *stop) {
+            PFObject *friend = user;
+            PFUser *friendUser = [friend objectForKey:AAActivityToUserKey];
+            PFUser *userToGetId = [PFQuery getUserObjectWithId:friendUser.objectId];
+            [self.myFriends addObject:userToGetId];
+        }];
+        
+        self.arrayOfId = [[NSMutableArray alloc] initWithCapacity:[self.myFriends count]];
+        for (PFUser *userForId in self.myFriends) {
+            [self.arrayOfId addObject:userForId[@"facebookId"]];
+        }
+        
+        [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            if (!error) {
+                NSArray *data = [result objectForKey:@"data"];
+                if (data) {
+                    NSMutableArray *facebookIds = [[NSMutableArray alloc] initWithCapacity:[data count]];
+                    for (NSDictionary *friendData in data) {
+                        if (friendData[@"id"]) {
+                            [facebookIds addObject:friendData[@"id"]];
+                        }
+                    }
+                    
+                    [self.arrayOfId enumerateObjectsUsingBlock:^(id obj1, NSUInteger idx, BOOL *stop) {
+                        [facebookIds enumerateObjectsUsingBlock:^(id obj2, NSUInteger idx, BOOL *stop) {
+                            if ([obj1 isEqual:obj2]) {
+                                [facebookIds removeObject:obj2];
+                            }
+                        }];
+                    }];
+                    
+                    
+                    [[AACache sharedChache] setFacebookFriends:facebookIds];
+                    if (currentUser){
+                        if ([currentUser objectForKey:AAUserFacebookIDKey]) {
+                            [currentUser removeObjectForKey:AAUserFacebookIDKey];
+                        }
+                        
+                        
+                        PFQuery *facebookFriendQuery = [PFUser query];
+                        [facebookFriendQuery whereKey:AAUserFacebookIDKey containedIn:facebookIds];
+                        
+                        self.simpleSharingListFriends = [[NSMutableArray alloc] init];
+                        
+                        [facebookFriendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                            if (!error) {
+                                [self.simpleSharingListFriends removeAllObjects];
+                                [self.simpleSharingListFriends addObjectsFromArray:objects];
+                                [self.simpleSharingListFriends enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
+                                    PFObject *joinActivity = [PFObject objectWithClassName:AAActivityClassKey];
+                                    [joinActivity setObject:currentUser forKey:AAActivityFromUserKey];
+                                    [joinActivity setObject:newFriend forKey:AAActivityToUserKey];
+                                    [joinActivity setObject:AAActivityTypeJoined forKey:AAActivityTypeKey];
+                                    
+                                    PFACL *joinACL = [PFACL ACL];
+                                    [joinACL setPublicReadAccess:YES];
+                                    joinActivity.ACL = joinACL;
+                                    
+                                    [joinActivity save];
+                                    
+                                }];
+                            }
+                        }];
+                        [currentUser saveEventually];
+                    }
+                }
+            }
+        }];
+        
+    }];
+    
+    [self updateFriendArray];
+}
+
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,18 +193,18 @@
 {
   
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        
         PFObject *friend = [self.friendsArray objectAtIndex:indexPath.row];
         self.friendInTable = [friend objectForKey:@"toUser"];
         [self.selectedFriends addObject:self.friendInTable];
         
-        NSLog(@"%@", self.selectedFriends);
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryNone;
         [self.selectedFriends removeObject:[self.selectedFriends objectAtIndex:indexPath.row]];
-        NSLog(@"%@", self.selectedFriends);
         
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -131,9 +219,5 @@
     [self.delegate didPickFriends:self.selectedFriends];
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
-
-
 
 @end

@@ -143,7 +143,6 @@
     if (friends) {
         [self.cache setObject:friends forKey:key];
     }
-    NSLog(@"cache : %@", friends);
     return friends;
 }
 

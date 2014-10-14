@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) PFObject *theNewList;
+@property (strong, nonatomic) PFRelation *relation;
 
 
 
@@ -63,7 +64,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+  
     [self.selectedFriends removeAllObjects];
     
     self.textView.text = nil;
@@ -83,29 +84,24 @@
 
 - (IBAction)saveBarButtonPressed:(UIBarButtonItem *)sender {
     
-    
-    NSLog(@"selection finale : %@", self.selectedFriends);
     PFUser *currentUser = [PFUser currentUser];
-    PFACL *sharingACL = [PFACL ACL];
     
     self.theNewList = [PFObject objectWithClassName:AAListClassKey];
     
     [self.theNewList setObject:self.textView.text forKey:AAListTextKey];
     [self.theNewList setObject:self.titleLabel.text forKey:AAListTitleKey];
-    [self.theNewList setObject:[PFUser currentUser] forKey:AAListUserKey];
+    [self.theNewList setObject:currentUser forKey:AAListUserKey];
     
     for (PFUser *user in self.selectedFriends) {
-        [sharingACL setWriteAccess:YES forUser:user];
-        [sharingACL setReadAccess:YES forUser:user];
-        PFRelation *relation = [self.theNewList relationForKey:@"Writer"];
-        [relation addObject:user];
+        self.relation = [self.theNewList relationForKey:@"Writer"];
+        [self.relation addObject:user];
+        
     }
     
-    [sharingACL setReadAccess:YES forUser:currentUser];
-    [sharingACL setWriteAccess:YES forUser:currentUser];
-    [sharingACL setPublicWriteAccess:NO];
-    [sharingACL setPublicReadAccess:NO];
-    [self.theNewList setACL:sharingACL];
+    self.relation = [self.theNewList relationForKey:@"Writer"];
+    [self.relation addObject:currentUser];
+    
+    
     [self.theNewList saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshTable" object:self];
@@ -143,7 +139,7 @@
 #pragma mark - Delegate
 
 -(void)didPickFriends:(NSMutableArray *)friendsPicked{
-    
+    NSLog(@"Plop");
     self.selectedFriends = friendsPicked;
 }
 

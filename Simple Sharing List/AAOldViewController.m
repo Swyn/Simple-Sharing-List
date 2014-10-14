@@ -7,7 +7,7 @@
 //
 
 #import "AAOldViewController.h"
-#import "AAFriendSharingOldListTableViewController.h"
+#import "AAHomeViewController.h"
 
 @interface AAOldViewController () <AAFriendSharingOldListTableViewControllerDelegate>
 
@@ -23,11 +23,15 @@
 
 @property (strong, nonatomic) NSMutableArray *selectedFriends;
 
+@property (strong, nonatomic) PFObject *thisList;
+@property (strong, nonatomic) PFRelation *oldRelationNew;
+
 
 
 @end
 
 @implementation AAOldViewController
+
 
 -(NSMutableArray *)friendsPicked {
     if (!_selectedFriends) {
@@ -58,7 +62,11 @@
      self.updateSharingButton.enabled = YES;
     self.textView.text = nil;
     self.titleLabel.delegate = self;
+    
+    
+    
     [self.selectedFriends removeAllObjects];
+    [self UpdateSharing];
     [self updateLabels];
    
     
@@ -71,31 +79,31 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+-(void)UpdateSharing {
+    PFRelation *relation = [self.oldList relationForKey:@"Writer"];
+    PFQuery *query = [relation query];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [self.myList addObjectsFromArray:objects];
+    }];
+    
+}
 
 - (IBAction)saveBarButtonPressed:(UIBarButtonItem *)sender{
     
-    
-    NSLog(@"self.selected friend : %@", self.selectedFriends);
-    
     PFUser *currentUser = [PFUser currentUser];
-    PFACL *sharingACL = [PFACL ACL];
-    
-    for (PFUser *user in self.selectedFriends) {
-        [sharingACL setWriteAccess:YES forUser:user];
-        [sharingACL setReadAccess:YES forUser:user];
-    }
-    
-    [sharingACL setReadAccess:YES forUser:currentUser];
-    [sharingACL setWriteAccess:YES forUser:currentUser];
-    [sharingACL setPublicWriteAccess:NO];
-    [sharingACL setPublicReadAccess:NO];
     
     PFQuery *query = [PFQuery queryWithClassName:AAListClassKey];
     [query getObjectInBackgroundWithId:self.oldList.objectId block:^(PFObject *object, NSError *error) {
+        
         object[AAListTitleKey] = self.titleLabel.text;
         object[AAListTextKey] = self.textView.text;
-        object.ACL = sharingACL;
+        
+        for (PFUser *user in self.selectedFriends) {
+            self.oldRelationNew = [object relationForKey:@"Writer"];
+            [self.oldRelationNew addObject:user];
+        }
+        self.oldRelationNew = [object relationForKey:@"Writer"];
+        [self.oldRelationNew addObject:currentUser];
     
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshTable" object:self];
@@ -118,8 +126,8 @@
     if ([segue.identifier isEqualToString:@"listToFriendPickSegue"]) {
         
         if ([segue.destinationViewController isKindOfClass:[AAFriendSharingOldListTableViewController class]]) {
-            
             AAFriendSharingOldListTableViewController *pickerSegue = segue.destinationViewController;
+            pickerSegue.friendsAlreadyPicked = [self.myList mutableCopy];
             pickerSegue.delegate = self;
         }
     }
@@ -132,19 +140,14 @@
 }
 
 
--(void)didPickFriend:(NSMutableArray *)friendsPicked{
-    self.selectedFriends = friendsPicked;
+
+-(void)didPickFriendForOldList:(NSMutableArray *)friendsPickedForOldList {
+    self.selectedFriends = friendsPickedForOldList;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)updateSharingBarButtonPressed:(UIBarButtonItem *)sender {
+    [self performSegueWithIdentifier:@"listToFriendPickSegue" sender:self];
 }
-*/
+
 
 @end

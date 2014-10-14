@@ -11,6 +11,4 @@
 
 @interface AAHomeViewController : PFQueryTableViewController
 
-@property (strong, nonatomic) PFObject *createList;
-
 @end
