@@ -67,7 +67,6 @@
 - (void)viewDidLoad
 
 {
-
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -75,6 +74,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable:) name:@"refreshTable" object:nil];
 
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -87,12 +87,10 @@
     [super objectsDidLoad:error];
     NSLog(@"error : %@", [error localizedDescription]);
     if (!error) {
+        [self.tableView reloadData];
         [self updateListTable];
     }
 }
-
-
-
 
 #pragma mark - initial Query
 
@@ -150,6 +148,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"homeToOldListSegue" sender:indexPath];
+}
+
+- (IBAction)logoutBarButtonPressed:(UIBarButtonItem *)sender {
+    [PFUser logOut];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

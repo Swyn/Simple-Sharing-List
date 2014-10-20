@@ -27,6 +27,8 @@
         [[PFInstallation currentInstallation] saveInBackground];
     }
     
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:107.0/256.0 green:145.0/256.0 blue:35.0/256.0 alpha:1.0]];
+    
     PFACL *defaultACl = [PFACL ACL];
     [defaultACl setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACl withAccessForCurrentUser:YES];

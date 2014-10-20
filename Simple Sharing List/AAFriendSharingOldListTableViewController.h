@@ -14,7 +14,7 @@
 
 @end
 
-@interface AAFriendSharingOldListTableViewController : UITableViewController
+@interface AAFriendSharingOldListTableViewController : PFQueryTableViewController
 
 @property (weak) id <AAFriendSharingOldListTableViewControllerDelegate> delegate;
 

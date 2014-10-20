@@ -56,6 +56,17 @@
     return _selectedFriends;
 }
 
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.parseClassName = AAActivityClassKey;
+        self.pullToRefreshEnabled = YES;
+    }
+    
+    return self;
+}
+
+
 @synthesize  friendsAlreadyPicked = _friendsAlreadyPicked;
 
 - (void)viewDidLoad {
@@ -72,6 +83,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
+}
+
+-(void)objectsDidLoad:(NSError *)error
+{
+    [super objectsDidLoad:error];
+    if (!error) {
+        [self updateFriendArray];
+    }
 }
 
 #pragma mark - Table view data source
@@ -166,6 +185,7 @@
                             }
                         }];
                         [currentUser saveEventually];
+                        [self updateFriendArray];
                     }
                 }
             }
@@ -173,7 +193,7 @@
 
     }];
     
-    [self updateFriendArray];
+    
 }
 
 

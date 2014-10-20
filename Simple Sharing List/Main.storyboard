@@ -16,26 +16,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIe-eX-1Hj">
-                                <rect key="frame" x="87" y="518" width="146" height="30"/>
-                                <state key="normal" title="Login With Facebook">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Defaut-568h@x2.png" translatesAutoresizingMaskIntoConstraints="NO" id="smS-W9-Csl">
+                                <rect key="frame" x="0.0" y="35" width="320" height="568"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uVJ-1X-TDF">
+                                <rect key="frame" x="150" y="397" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIe-eX-1Hj">
+                                <rect key="frame" x="38" y="514" width="244" height="34"/>
+                                <state key="normal" title="Login With Facebook" backgroundImage="Facebook.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="eWz-ef-FHz" eventType="touchUpInside" id="DsC-Yn-RYt"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uVJ-1X-TDF">
-                                <rect key="frame" x="150" y="462" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="vIe-eX-1Hj" firstAttribute="top" secondItem="uVJ-1X-TDF" secondAttribute="bottom" constant="36" id="3zc-lA-GYh"/>
-                            <constraint firstItem="vIe-eX-1Hj" firstAttribute="centerX" secondItem="WAo-p8-TVX" secondAttribute="centerX" id="HUs-vL-Fvm"/>
-                            <constraint firstAttribute="bottom" secondItem="vIe-eX-1Hj" secondAttribute="bottom" constant="20" symbolic="YES" id="Ol5-w7-rPS"/>
-                            <constraint firstItem="uVJ-1X-TDF" firstAttribute="centerX" secondItem="vIe-eX-1Hj" secondAttribute="centerX" id="uMd-Wf-MFc"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Yur-s2-20J"/>
                     <connections>
@@ -46,7 +44,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcn-sb-Rdv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-51" y="-294"/>
+            <point key="canvasLocation" x="-51" y="-292"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="416-8d-DdM">
@@ -72,8 +70,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="lRy-zz-wfu">
-                        <barButtonItem key="leftBarButtonItem" title="LogOut" id="Zeo-xt-rpr"/>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="nOQ-rF-UjZ">
+                        <barButtonItem key="leftBarButtonItem" title="LogOut" id="Zeo-xt-rpr">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="logoutBarButtonPressed:" destination="cOE-zz-RMG" id="anT-sX-Pnl"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Create New List" id="nOQ-rF-UjZ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="023-b2-UEe" kind="push" id="CaJ-uH-cdj"/>
                             </connections>
@@ -99,9 +103,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="titre :" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kPN-xo-lKi">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Title :" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kPN-xo-lKi">
                                 <rect key="frame" x="0.0" y="68" width="320" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-ly-H4b">
@@ -135,11 +139,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="4fs-zQ-6gZ">
                         <barButtonItem key="leftBarButtonItem" title="Save" id="Mfe-SK-jtC">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="saveBarButtonPressed:" destination="023-b2-UEe" id="r8f-AS-BXH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Share With..." id="XLt-HV-hKp">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="shareButtonPressed:" destination="023-b2-UEe" id="6Wg-y6-uYM"/>
                                 <segue destination="XQp-N7-uLP" kind="push" identifier="listToFriendPickSegue" id="LY8-pr-TUu"/>
@@ -188,11 +194,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="ria-P9-zg4">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="4P2-q2-gfi">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="XQp-N7-uLP" id="DIM-Y7-fLB"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Share" id="w7d-Bj-vH9">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="shareButtonPressed:" destination="XQp-N7-uLP" id="Noo-bg-54M"/>
                             </connections>
@@ -215,6 +223,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KsE-KH-mkn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.2274509804" green="0.64705882349999999" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -237,7 +246,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="titre :" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LuA-Zp-9Zq">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title :" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LuA-Zp-9Zq">
                                 <rect key="frame" x="0.0" y="68" width="320" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -260,11 +269,13 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="OYI-yz-GjN">
                         <barButtonItem key="leftBarButtonItem" title="Save" id="Ovj-cq-PYY">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="saveBarButtonPressed:" destination="4tQ-CN-YQS" id="4Qe-GT-gBi"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Update Sharing" id="UGH-s2-yWX">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="updateSharingBarButtonPressed:" destination="4tQ-CN-YQS" id="gLM-0w-RQ5"/>
                             </connections>
@@ -315,11 +326,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="aSf-cv-fPH">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="vej-cp-ia8">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cancelBarButtonPressed:" destination="Hxa-8k-xIL" id="70a-VC-EHS"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Share" id="fgR-Y2-0uf">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="shareBarButtonPressed:" destination="Hxa-8k-xIL" id="aFh-cP-slG"/>
                             </connections>
@@ -335,6 +348,10 @@
             <point key="canvasLocation" x="1264" y="-294"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Defaut-568h@x2.png" width="640" height="1136"/>
+        <image name="Facebook.png" width="200" height="25"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

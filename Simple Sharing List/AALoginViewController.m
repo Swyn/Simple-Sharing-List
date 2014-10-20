@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 
+
 @end
 
 @implementation AALoginViewController
@@ -33,8 +34,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
     self.activityIndicator.hidden = YES;
+    [self checkIfExist];
     // Do any additional setup after loading the view.
 }
 
@@ -51,6 +54,13 @@
     {
         [self performSegueWithIdentifier:@"loginToHomeSegue" sender:self];
     }
+}
+
+-(BOOL)checkIfExist {
+    PFUser *currentUser = [PFUser currentUser];
+    NSLog(@"currentUser : %@", currentUser );
+    //PFQuery *query = [PFUser query];
+    return YES;
 }
 
 #pragma mark - Facebook Connection
@@ -132,40 +142,6 @@
             if (friendData[@"id"]){
                 [facebookIds addObject:friendData[@"id"]];
             }
-        }
-        
-        [[AACache sharedChache] setFacebookFriends:facebookIds];
-        
-        if (user) {
-            if ([user objectForKey:AAUserFacebookFriendsKey]) {
-                [user removeObjectForKey:AAUserFacebookFriendsKey];
-            }
-    
-            PFQuery *facebookFriendsQuery = [PFUser query];
-            [facebookFriendsQuery whereKey:AAUserFacebookIDKey containedIn:facebookIds];
-            
-            self.simpleSharingListFriends = [[NSMutableArray alloc] init];
-            
-            [facebookFriendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                if (!error) {
-                    [self.simpleSharingListFriends removeAllObjects];
-                    [self.simpleSharingListFriends addObjectsFromArray:objects];
-                    [self.simpleSharingListFriends enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
-                        
-                        PFObject *joinActivity = [PFObject objectWithClassName:AAActivityClassKey];
-                        [joinActivity setObject:user forKey:AAActivityFromUserKey];
-                        [joinActivity setObject:newFriend forKey:AAActivityToUserKey];
-                        [joinActivity setObject:AAActivityTypeJoined forKey:AAActivityTypeKey];
-                        
-                        PFACL *joinACL = [PFACL ACL];
-                        [joinACL setPublicReadAccess:YES];
-                        joinActivity.ACL = joinACL;
-                        
-                        [joinActivity saveInBackground];
-                    }];
-                }
-            }];
-            [user saveEventually];
         }
     }
     else {

@@ -58,6 +58,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    [self updateFriendFromFB];
     [self updateFriendArray];
     
 }
@@ -157,6 +158,7 @@
                             }
                         }];
                         [currentUser saveEventually];
+                        [self updateFriendArray];
                     }
                 }
             }
@@ -164,7 +166,7 @@
         
     }];
     
-    [self updateFriendArray];
+    
 }
 
 
