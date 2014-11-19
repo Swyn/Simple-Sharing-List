@@ -29,5 +29,51 @@
             landmarkType = "2">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Simple Sharing List/AAFFriendPickerTableViewController.m"
+            timestampString = "435763926.60808"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "-updateFriendFromFB"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__56-[AAFFriendPickerTableViewController updateFriendFromFB]_block_invoke_2126"
+                  moduleName = "Simple Sharing List"
+                  urlString = "file:///Users/alexandre/Documents/Travail/Simple%20Sharing%20List/Simple%20Sharing%20List/Simple%20Sharing%20List/AAFFriendPickerTableViewController.m"
+                  timestampString = "435689323.437199"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "194"
+                  endingLineNumber = "194"
+                  offsetFromSymbolStart = "436">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__56-[AAFFriendPickerTableViewController updateFriendFromFB]_block_invoke_2126"
+                  moduleName = "Simple Sharing List"
+                  urlString = "file:///Users/alexandre/Documents/Travail/Simple%20Sharing%20List/Simple%20Sharing%20List/Simple%20Sharing%20List/AAFFriendPickerTableViewController.m"
+                  timestampString = "435689323.437432"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "194"
+                  endingLineNumber = "194"
+                  offsetFromSymbolStart = "480">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

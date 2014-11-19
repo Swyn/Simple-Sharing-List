@@ -10,6 +10,8 @@
 
 
 @interface AAFFriendPickerTableViewController ()
+
+
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 
@@ -50,6 +52,17 @@
     return _selectedFriends;
 }
 
+-(id)initWithCoder:(NSCoder *)aCoder
+{
+    self = [super initWithCoder:aCoder];
+    if (self) {
+        self.parseClassName = AAActivityClassKey;
+        self.pullToRefreshEnabled = YES;
+        self.paginationEnabled = NO;
+    }
+    return self;
+}
+
 
 - (void)viewDidLoad {
     
@@ -59,13 +72,36 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self updateFriendFromFB];
-    [self updateFriendArray];
     
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+-(void)objectsDidLoad:(NSError *)error
+{
+    [super objectsDidLoad:error];
+    NSLog(@"error : %@", [error localizedDescription]);
+    if (!error) {
+        [self.tableView reloadData];
+        [self updateFriendArray];
+    }
+}
+
+- (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath
+{
+    PFObject *obj = nil;
+    if (indexPath.row < self.objects.count)
+    {
+        obj = [self.objects objectAtIndex:indexPath.row];
+    }
+    
+    return obj;
+}
+
 
 #pragma mark - Table view data source
 
@@ -102,6 +138,7 @@
         }];
         
         self.arrayOfId = [[NSMutableArray alloc] initWithCapacity:[self.myFriends count]];
+        [self.arrayOfId removeAllObjects];
         for (PFUser *userForId in self.myFriends) {
             [self.arrayOfId addObject:userForId[@"facebookId"]];
         }
@@ -111,6 +148,7 @@
                 NSArray *data = [result objectForKey:@"data"];
                 if (data) {
                     NSMutableArray *facebookIds = [[NSMutableArray alloc] initWithCapacity:[data count]];
+                    [facebookIds removeAllObjects];
                     for (NSDictionary *friendData in data) {
                         if (friendData[@"id"]) {
                             [facebookIds addObject:friendData[@"id"]];
@@ -153,12 +191,11 @@
                                     joinActivity.ACL = joinACL;
                                     
                                     [joinActivity save];
-                                    
+                                    [self updateFriendArray];
                                 }];
                             }
                         }];
-                        [currentUser saveEventually];
-                        [self updateFriendArray];
+                        
                     }
                 }
             }
@@ -170,30 +207,25 @@
 }
 
 
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+-(PFTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *CellIndetifier = @"friendCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIndetifier forIndexPath:indexPath];
+    PFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIndetifier forIndexPath:indexPath];
     
     PFObject *friend = [self.friendsArray objectAtIndex:indexPath.row];
     self.friendInTable = [friend objectForKey:@"toUser"];
     
-
     cell.textLabel.text = self.friendInTable[@"name"];
     
-    if ([self.selectedFriends containsObject:[self.friendsArray objectAtIndex:indexPath.row]]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
     return cell;
+
 }
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     if (cell.accessoryType == UITableViewCellAccessoryNone) {

@@ -14,7 +14,7 @@
 
 @end
 
-@interface AAFFriendPickerTableViewController : UITableViewController
+@interface AAFFriendPickerTableViewController : PFQueryTableViewController
 
 @property (weak) id <AAFFriendPickerTableViewControllerDelegate> delegate;
 

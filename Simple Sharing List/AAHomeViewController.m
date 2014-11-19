@@ -70,7 +70,9 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
     [self updateListTable];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable:) name:@"refreshTable" object:nil];
 
 }
@@ -104,30 +106,45 @@
         [self.listView removeAllObjects];
         [self.listView addObjectsFromArray:objects];
         [self.tableView reloadData];
-        
     }];
     
 }
 
 
+- (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath
+{
+    PFObject *obj = nil;
+    if (indexPath.row < self.objects.count)
+    {
+        obj = [self.objects objectAtIndex:indexPath.row];
+    }
+    
+    return obj;
+}
+
 #pragma mark - UITableView DataSources
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return [self.listView count];
+    
 }
 
 -(PFTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object
 {
     
     static NSString *simpleTableIdentifier = @"Cell";
-    PFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier forIndexPath:indexPath];
+    PFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil) {
-        cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     }
     
+    if ([self.listView count] > 0) {
+        
     PFObject *list = [self.listView objectAtIndex:indexPath.row];
     
     cell.textLabel.text = list[@"title"];
+    }
     return cell;
 }
 

@@ -98,6 +98,11 @@
         object[AAListTitleKey] = self.titleLabel.text;
         object[AAListTextKey] = self.textView.text;
         
+        [self.myList enumerateObjectsUsingBlock:^(id obj1, NSUInteger idx, BOOL *stop) {
+            self.oldRelationNew = [object relationForKey:@"Writer"];
+            [self.oldRelationNew removeObject:obj1];
+        }];
+        
         for (PFUser *user in self.selectedFriends) {
             self.oldRelationNew = [object relationForKey:@"Writer"];
             [self.oldRelationNew addObject:user];
